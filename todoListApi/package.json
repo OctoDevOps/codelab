@@ -1,0 +1,25 @@
+{
+  "name": "todolistapi",
+  "version": "1.0.0",
+  "description": "todo list API for devsecops pipeline validation",
+  "main": "index.js",
+  "scripts": {
+    "test": "Oops.. No test cases yet",
+    "start": "nodemon server.js"
+  },
+  "keywords": [
+    "RESTFul",
+    "API",
+    "devsecops",
+    "dinesh"
+  ],
+  "author": "Dinesh Ganesan",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongoose": "^5.2.16"
+  }
+}
