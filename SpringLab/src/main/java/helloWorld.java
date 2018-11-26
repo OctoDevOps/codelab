@@ -11,6 +11,13 @@ public class helloWorld {
 		return "Hello World! My First Java Apps..";
 	}
 
+	//IAE-1
+	@RequestMapping(value = "/IAE/rel/version", method = RequestMethod.GET)
+	@ResponseBody
+	String getRelVersion() {
+		return "Rel: 15.0, Program Increment:16 Build#:2313";
+	}
+
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(helloWorld.class, args);
 	}
