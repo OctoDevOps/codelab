@@ -15,7 +15,7 @@ public class helloWorld {
 	@RequestMapping(value = "/IAE/rel/version", method = RequestMethod.GET)
 	@ResponseBody
 	String getRelVersion() {
-		return "Rel: 16.1, Program Increment:16 Build#:2313";
+		return "Rel: 16.2, Program Increment:16 Build#:2313";
 	}
 
 	public static void main(String[] args) throws Exception {
