@@ -13,7 +13,7 @@ node {
                 credentialsId: 'dinesh'
                 git 'https://github.com/OctoDevOps/codelab.git'
 
-                def targetVersion = ${env.BUILD_NUMBER} //getDevVersion()
+                def targetVersion = "${env.BUILD_NUMBER}" //getDevVersion()
                 print 'target build version...'
                 print targetVersion
                 sh "'${mvnHome}/bin/mvn' -Dintegration-tests.skip=true -Dbuild.number=${targetVersion} clean package"
