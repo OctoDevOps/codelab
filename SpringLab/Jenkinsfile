@@ -35,11 +35,11 @@ node {
 
    //Todo: find a method for the github
    // bitbucketStatusNotify(buildState: 'SUCCESSFUL')
-    jiraComment(issueKey: "${ISSUE_ID}", body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) was successful. Please go to ${env.BUILD_URL}.")
+   // jiraComment(issueKey: "${ISSUE_ID}", body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) was successful. Please go to ${env.BUILD_URL}.")
 
    }catch(err){
-       bitbucketStatusNotify(buildState: 'FAILED')
-       jiraComment(issueKey: "${ISSUE_ID}", body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) was failed. Please go to ${env.BUILD_URL}.")
+       //bitbucketStatusNotify(buildState: 'FAILED')
+       //jiraComment(issueKey: "${ISSUE_ID}", body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) was failed. Please go to ${env.BUILD_URL}.")
        currentBuild.result = "FAILURE"
        print 'error ' + err
        throw err
