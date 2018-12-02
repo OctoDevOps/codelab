@@ -6,7 +6,6 @@ node {
   try {
     stage("Build with Unit Testing"){
             //Step #1. checkout the files
-            {
                 echo 'Checking out the files from repo...' + env.BRANCH_NAME
                 def mvnHome = tool 'Maven 3.5.2'
                 //Todo: find a right method
@@ -25,7 +24,6 @@ node {
                 // execute the unit testing and collect the reports
                 //junit '**//*target/unit-testing-reports/TEST-*.xml'
                 archive 'target*//*.jar'
-           }
          }
 
     stage("Deploy"){
@@ -47,14 +45,4 @@ node {
        throw err
    } 
 
-}
-
-
-@NonCPS
-def find(commit_log) {
-  print ' commit log : ' + commit_log
-  def matcher = (commit_log =~ /([a-zA-Z][a-zA-Z0-9_]+-[1-9][0-9]*)([^.]|\\.[^0-9]|\\.$|$)/)
-  print ' match : ' + matcher[0][1] + ' ' + matcher 
-  //assert matcher.matches()
-  return matcher[0][1]
 }
