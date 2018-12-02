@@ -13,7 +13,7 @@ node {
                 credentialsId: 'dinesh'
                 git 'https://github.com/OctoDevOps/codelab.git'
 
-                def targetVersion = getDevVersion()
+                def targetVersion = ${env.BUILD_NUMBER} //getDevVersion()
                 print 'target build version...'
                 print targetVersion
                 sh "'${mvnHome}/bin/mvn' -Dintegration-tests.skip=true -Dbuild.number=${targetVersion} clean package"
@@ -35,7 +35,7 @@ node {
 
    //Todo: find a method for the github
    // bitbucketStatusNotify(buildState: 'SUCCESSFUL')
-   // jiraComment(issueKey: "${ISSUE_ID}", body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) was successful. Please go to ${env.BUILD_URL}.")
+    //jiraComment(issueKey: "${ISSUE_ID}", body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) was successful. Please go to ${env.BUILD_URL}.")
 
    }catch(err){
        //bitbucketStatusNotify(buildState: 'FAILED')
