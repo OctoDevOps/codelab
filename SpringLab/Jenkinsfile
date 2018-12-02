@@ -1,0 +1,60 @@
+import java.text.SimpleDateFormat
+
+node {
+    def ISSUE_ID
+    def shortCommit
+  try {
+    stage("Build with Unit Testing"){
+            //Step #1. checkout the files
+            {
+                echo 'Checking out the files from repo...' + env.BRANCH_NAME
+                def mvnHome = tool 'Maven 3.5.2'
+                //Todo: find a right method
+                //bitbucketStatusNotify(buildState: 'INPROGRESS')
+                credentialsId: 'dinesh'
+                git 'https://github.com/OctoDevOps/codelab.git'
+
+                def targetVersion = getDevVersion()
+                print 'target build version...'
+                print targetVersion
+                sh "'${mvnHome}/bin/mvn' -Dintegration-tests.skip=true -Dbuild.number=${targetVersion} clean package"
+                def pom = readMavenPom file: 'pom.xml'
+                // get the current development version
+                developmentArtifactVersion = "${pom.version}-${targetVersion}"
+                print pom.version
+                // execute the unit testing and collect the reports
+                //junit '**//*target/unit-testing-reports/TEST-*.xml'
+                archive 'target*//*.jar'
+           }
+         }
+
+    stage("Deploy"){
+        echo "Build package is readly to deploy"
+    }
+
+   print 'commit log ' + shortCommit
+   print 'issue id ' +  ISSUE_ID   
+
+   //Todo: find a method for the github
+   // bitbucketStatusNotify(buildState: 'SUCCESSFUL')
+    jiraComment(issueKey: "${ISSUE_ID}", body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) was successful. Please go to ${env.BUILD_URL}.")
+
+   }catch(err){
+       bitbucketStatusNotify(buildState: 'FAILED')
+       jiraComment(issueKey: "${ISSUE_ID}", body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) was failed. Please go to ${env.BUILD_URL}.")
+       currentBuild.result = "FAILURE"
+       print 'error ' + err
+       throw err
+   } 
+
+}
+
+
+@NonCPS
+def find(commit_log) {
+  print ' commit log : ' + commit_log
+  def matcher = (commit_log =~ /([a-zA-Z][a-zA-Z0-9_]+-[1-9][0-9]*)([^.]|\\.[^0-9]|\\.$|$)/)
+  print ' match : ' + matcher[0][1] + ' ' + matcher 
+  //assert matcher.matches()
+  return matcher[0][1]
+}
