@@ -1,7 +1,7 @@
 import java.text.SimpleDateFormat
 
 node {
-    def ISSUE_ID
+    def ISSUE_ID = "IAE-1"
     def shortCommit
   try {
     stage("Build with Unit Testing"){
@@ -21,11 +21,15 @@ node {
                 def pom = readMavenPom file: 'pom.xml'
                 // get the current development version
                 developmentArtifactVersion = "${pom.version}-${targetVersion}"
-                print pom.version
+                print 'Build Artifact version:'
+                print developmentArtifactVersion
                 // execute the unit testing and collect the reports
                 //junit '**//*target/unit-testing-reports/TEST-*.xml'
                 archive 'target*//*.jar'
             }
+
+            jiraComment(issueKey: ISSUE_ID, body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) builded. Please go to ${env.BUILD_URL}.")
+
          }
 
     stage("Deploy"){
