@@ -58,7 +58,7 @@ node {
     * Updates Jira Fixed in build field with the build number and adds a comment in each related Jira issue
     * This requires the Jenkins JIRA Pipeline Steps plugin https://jenkinsci.github.io/jira-steps-plugin/getting-started/
     * @param build Build number that will be entered in the "Fixed in Build" Jira field
-    */
+  
     def updateJira(build) {
         def jiraServer = 'JIRA_LOCAL' // Define a Jira server entry in the Jenkins Jira Steps configuration named JIRA-PROD
     def jiraIssues = jiraIssueSelector(issueSelector: [$class: 'DefaultIssueSelector'])
@@ -68,5 +68,6 @@ node {
             jiraEditIssue idOrKey: issue, issue: fixedInBuild, site: jiraServer
         }
     }
+    */
 
 }
