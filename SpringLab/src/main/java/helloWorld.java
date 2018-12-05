@@ -20,12 +20,12 @@ public class helloWorld {
 	}
 
 
-	//IAE-1
+	//IAE-2
 	@RequestMapping(value = "/IAE/rel/build", method = RequestMethod.GET)
 	@ResponseBody
 	String getBuildVersion() {
 		//updated a new release version
-		return "Build#:2313";
+		return "Build#:4310";
 	}
 
 	public static void main(String[] args) throws Exception {
