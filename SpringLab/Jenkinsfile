@@ -43,7 +43,7 @@ node {
     //jiraComment(issueKey: "${ISSUE_ID}", body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) was successful. Please go to ${env.BUILD_URL}.")
     print 'Updated JIRA sucessfully!'
 
-    setBuildStatus("ci/jenkins/build-status", "Build # ${env.BUILD_NUMBER} is pass", 'SUCCESS')
+    setBuildStatus("ci/jenkins/build-status", "Build # ${env.BUILD_NUMBER} is pass", 'FAILURE')
 
    }catch(err){
        //bitbucketStatusNotify(buildState: 'FAILED')
