@@ -73,7 +73,7 @@ node {
         }
     }
 
-    void setBuildStatus(context, message, state) {
+    def setBuildStatus(context, message, state) {
     // partially hard coded URL because of https://issues.jenkins-ci.org/browse/JENKINS-36961, adjust to your own GitHub instance
     print "Publishing the build status"
     
