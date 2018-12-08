@@ -4,15 +4,17 @@ import java.lang.String
 node {
     def shortCommit
   try {
-    stage("Build with Unit Testing"){
-            //Step #1. checkout the files
-                echo 'Checking out the files from repo...' + env.BRANCH_NAME
-                def mvnHome = tool 'M3'
-                //Todo: find a right method
-                //bitbucketStatusNotify(buildState: 'INPROGRESS')
-                credentialsId: 'dinesh'
-                git 'https://github.com/OctoDevOps/codelab.git'
 
+     def mvnHome = tool 'M3'
+
+    //Step #1. checkout the files
+    stage ("Code checkout")  {
+            credentialsId: 'dinesh'
+            echo 'Checking out the files from repo...' + env.BRANCH_NAME
+            git 'https://github.com/OctoDevOps/codelab.git'
+    }
+    //Step #2. Build with unit testing
+    stage("Build with Unit Testing"){
             dir('SpringLab'){
                 def targetVersion = "${env.BUILD_NUMBER}" //getDevVersion()
                 print 'target build version...'
@@ -31,6 +33,10 @@ node {
 
     stage("Deploy"){
         echo "Build package is readly to deploy"
+        sh "pid=\$(lsof -i:8989 -t); kill -TERM \$pid "
+                  + "|| kill -KILL \$pid"
+                    withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
+                    sh 'nohup ./mvnw spring-boot:run -Dserver.port=8081 &'
     }
 
    print 'commit log ' + shortCommit
