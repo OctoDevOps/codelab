@@ -111,3 +111,12 @@ node {
         return changeString
     }
 
+
+
+/* to remove the build history from jenkinsfiles
+    def jobName = "JPT_Automation"
+    def job = Jenkins.instance.getItem(jobName)
+    job.getBuilds().each { it.delete() }
+    job.nextBuildNumber = 1
+    job.save()
+*/
