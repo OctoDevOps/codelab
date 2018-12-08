@@ -1,5 +1,5 @@
 import java.text.SimpleDateFormat
-import java.lang.string
+import java.lang.String
 
 node {
     def ISSUE_ID = "IAE-1"
