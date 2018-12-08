@@ -27,12 +27,11 @@ public class jptAutomation {
 		return "16";
 	}
 
-
 	//IAE-2
 	@RequestMapping(value = "/rel/build", method = RequestMethod.GET)
 	@ResponseBody
 	String getBuildVersion() {
-		//updated a new release version
+		//updated a new build version
 		return "01";
 	}
 
