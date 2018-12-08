@@ -66,7 +66,7 @@ node {
     def updateJira(build) {
         def jiraServer = 'JIRA_LOCAL' // Define a Jira server entry in the Jenkins Jira Steps configuration named JIRA-PROD
     def jiraIssues = jiraIssueSelector(issueSelector: [$class: 'DefaultIssueSelector'])
-        print 'Total # of Jira issues included in this build:' + jiraIssues.length
+        //print 'Total # of Jira issues included in this build:' + jiraIssues.length
         jiraIssues.each { issue ->
             print 'JIRA #' + issue
             jiraAddComment comment: "{panel:bgColor=#97FF94}{code}Code was added to address this issue in build ${build}{code} {panel}", idOrKey: issue, site: jiraServer
