@@ -12,7 +12,7 @@ node {
             credentialsId: 'dinesh'
             echo 'Checking out the files from repo...' + env.BRANCH_NAME
             git 'https://github.com/OctoDevOps/codelab.git'
-    }
+            }
     //Step #2. Build with unit testing
     stage("Build with Unit Testing"){
             dir('SpringLab'){
@@ -37,20 +37,18 @@ node {
                   + "|| kill -KILL \$pid"
                     withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
                     sh 'nohup ./mvnw spring-boot:run -Dserver.port=8081 &'
+                    }
+
+    stage("Update JIRA"){
+            updateJira("${env.BUILD_NUMBER}")
+            //jiraComment(issueKey: "${ISSUE_ID}", body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) was successful. Please go to ${env.BUILD_URL}.")
+            print 'Updated JIRA sucessfully!'
+
+            //setBuildStatus("ci/jenkins/build-status", "Build # ${env.BUILD_NUMBER} is pass", 'FAILURE')
+            setBuildStatus("ci/jenkins/build-status", "Build # ${env.BUILD_NUMBER} is pass", 'SUCCESS')
+        }
     }
-
-   print 'commit log ' + shortCommit
-   //Todo: find a method for the github
-   // bitbucketStatusNotify(buildState: 'SUCCESSFUL')
-   
-    updateJira("${env.BUILD_NUMBER}")
-    //jiraComment(issueKey: "${ISSUE_ID}", body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) was successful. Please go to ${env.BUILD_URL}.")
-    print 'Updated JIRA sucessfully!'
-
-    //setBuildStatus("ci/jenkins/build-status", "Build # ${env.BUILD_NUMBER} is pass", 'FAILURE')
-    setBuildStatus("ci/jenkins/build-status", "Build # ${env.BUILD_NUMBER} is pass", 'SUCCESS')
-
-   }catch(err){
+   } catch(err){
        //bitbucketStatusNotify(buildState: 'FAILED')
        //jiraComment(issueKey: "${ISSUE_ID}", body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) was failed. Please go to ${env.BUILD_URL}.")
        currentBuild.result = "FAILURE"
