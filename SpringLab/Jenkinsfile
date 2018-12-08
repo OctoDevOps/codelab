@@ -4,48 +4,47 @@ import java.lang.String
 node {
     def shortCommit
   try {
-     def mvnHome = tool 'M3'
-    //Step #1. checkout the files
-    stage ("Code checkout")  {
-            credentialsId: 'dinesh'
-            echo 'Checking out the files from repo...' + env.BRANCH_NAME
-            git 'https://github.com/OctoDevOps/codelab.git'
-            }
-    //Step #2. Build with unit testing
-    stage("Build with Unit Testing"){
-            dir('SpringLab'){
-                def targetVersion = "${env.BUILD_NUMBER}" //getDevVersion()
-                print 'target build version...'
-                print targetVersion
-                sh "'${mvnHome}/bin/mvn' -Dintegration-tests.skip=true -Dbuild.number=${targetVersion} clean package"
-                def pom = readMavenPom file: 'pom.xml'
-                // get the current development version
-                developmentArtifactVersion = "${pom.version}-${targetVersion}"
-                print 'Build Artifact version:'
-                print developmentArtifactVersion
-                // execute the unit testing and collect the reports
-                //junit '**//*target/unit-testing-reports/TEST-*.xml'
-                archive 'target*//*.jar'
-            }
-         }
+        dir('SpringLab'){
+            def mvnHome = tool 'M3'
+            //Step #1. checkout the files
+            stage ("Code checkout")  {
+                    credentialsId: 'dinesh'
+                    echo 'Checking out the files from repo...' + env.BRANCH_NAME
+                    git 'https://github.com/OctoDevOps/codelab.git'
+                    }
+            //Step #2. Build with unit testing
+            stage("Build with Unit Testing"){
+                        def targetVersion = "${env.BUILD_NUMBER}" //getDevVersion()
+                        print 'target build version...'
+                        print targetVersion
+                        sh "'${mvnHome}/bin/mvn' -Dintegration-tests.skip=true -Dbuild.number=${targetVersion} clean package"
+                        def pom = readMavenPom file: 'pom.xml'
+                        // get the current development version
+                        developmentArtifactVersion = "${pom.version}-${targetVersion}"
+                        print 'Build Artifact version:'
+                        print developmentArtifactVersion
+                        // execute the unit testing and collect the reports
+                        //junit '**//*target/unit-testing-reports/TEST-*.xml'
+                        archive 'target*//*.jar'
+                    }
+            stage("Stop, Deploy and Restart"){
+                echo "Build package is ready to deploy"
+                // shutdown
+                //sh 'curl -X POST http://localhost:8081/shutdown || true'
+                // copy file to target location, and start the application
+                //sh 'cp target/*.jar /codelab/buildrun/; cd /codelab/buildrun/; nohup java -jar /tmp/*.jar &'
+                // wait for application to respond
+                //sh 'while ! httping -qc1 http://localhost:8081 ; do sleep 1 ; '
+                }
+            stage("Update JIRA"){
+                    updateJira("${env.BUILD_NUMBER}")
+                    //jiraComment(issueKey: "${ISSUE_ID}", body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) was successful. Please go to ${env.BUILD_URL}.")
+                    print 'Updated JIRA sucessfully!'
 
-    stage("Stop, Deploy and Restart"){
-        echo "Build package is ready to deploy"
-        // shutdown
-        //sh 'curl -X POST http://localhost:8081/shutdown || true'
-        // copy file to target location, and start the application
-        //sh 'cp target/*.jar /codelab/buildrun/; cd /codelab/buildrun/; nohup java -jar /tmp/*.jar &'
-        // wait for application to respond
-        //sh 'while ! httping -qc1 http://localhost:8081 ; do sleep 1 ; '
-        }
-    stage("Update JIRA"){
-            updateJira("${env.BUILD_NUMBER}")
-            //jiraComment(issueKey: "${ISSUE_ID}", body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) was successful. Please go to ${env.BUILD_URL}.")
-            print 'Updated JIRA sucessfully!'
-
-            //setBuildStatus("ci/jenkins/build-status", "Build # ${env.BUILD_NUMBER} is pass", 'FAILURE')
-            setBuildStatus("ci/jenkins/build-status", "Build # ${env.BUILD_NUMBER} is pass", 'SUCCESS')
-        }
+                    //setBuildStatus("ci/jenkins/build-status", "Build # ${env.BUILD_NUMBER} is pass", 'FAILURE')
+                    setBuildStatus("ci/jenkins/build-status", "Build # ${env.BUILD_NUMBER} is pass", 'SUCCESS')
+                }
+            }
    } catch(err){
        //bitbucketStatusNotify(buildState: 'FAILED')
        //jiraComment(issueKey: "${ISSUE_ID}", body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) was failed. Please go to ${env.BUILD_URL}.")
