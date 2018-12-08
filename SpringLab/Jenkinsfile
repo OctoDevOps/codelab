@@ -2,7 +2,6 @@ import java.text.SimpleDateFormat
 import java.lang.String
 
 node {
-    def ISSUE_ID = "IAE-1"
     def shortCommit
   try {
     stage("Build with Unit Testing"){
@@ -35,8 +34,6 @@ node {
     }
 
    print 'commit log ' + shortCommit
-   print 'issue id ' +  ISSUE_ID   
-
    //Todo: find a method for the github
    // bitbucketStatusNotify(buildState: 'SUCCESSFUL')
    
@@ -56,7 +53,6 @@ node {
    } 
 }
 
-
     /**
     * Updates Jira Fixed in build field with the build number and adds a comment in each related Jira issue
     * This requires the Jenkins JIRA Pipeline Steps plugin https://jenkinsci.github.io/jira-steps-plugin/getting-started/
@@ -65,13 +61,13 @@ node {
   
     def updateJira(build) {
         def jiraServer = 'JIRA_LOCAL' // Define a Jira server entry in the Jenkins Jira Steps configuration named JIRA-PROD
-    def jiraIssues = jiraIssueSelector(issueSelector: [$class: 'DefaultIssueSelector'])
+        def jiraIssues = jiraIssueSelector(issueSelector: [$class: 'DefaultIssueSelector'])
         //print 'Total # of Jira issues included in this build:' + jiraIssues.length
         jiraIssues.each { issue ->
             print 'JIRA #' + issue
             jiraAddComment comment: "{panel:bgColor=#97FF94}{code}Code was added to address this issue in build ${build}{code} {panel}", idOrKey: issue, site: jiraServer
-            def fixedInBuild = [fields: [customfield_10121: build]] // This is a custom field named "Fixed in Build"
-            jiraEditIssue idOrKey: issue, issue: fixedInBuild, site: jiraServer
+            //def fixedInBuild = [fields: [customfield_10121: build]] // This is a custom field named "Fixed in Build"
+            //jiraEditIssue idOrKey: issue, issue: fixedInBuild, site: jiraServer
         }
     }
 
