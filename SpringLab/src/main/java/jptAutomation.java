@@ -35,6 +35,16 @@ public class jptAutomation {
 		return "01";
 	}
 
+	//IAE-3
+	@RequestMapping(value = "/rel/patch", method = RequestMethod.GET)
+	@ResponseBody
+	String getPatchVersion() {
+		//updated a new patch version
+		return "02";
+	}
+
+
+
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(jptAutomation.class, args);
 	}
