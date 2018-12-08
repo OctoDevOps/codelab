@@ -39,7 +39,7 @@ node {
    //Todo: find a method for the github
    // bitbucketStatusNotify(buildState: 'SUCCESSFUL')
    
-    //updateJira("${env.BUILD_NUMBER}")
+    updateJira("${env.BUILD_NUMBER}")
     //jiraComment(issueKey: "${ISSUE_ID}", body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) was successful. Please go to ${env.BUILD_URL}.")
     print 'Updated JIRA sucessfully!'
 
