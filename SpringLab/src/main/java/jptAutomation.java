@@ -40,7 +40,7 @@ public class jptAutomation {
 	@ResponseBody
 	String getPatchVersion() {
 		//updated a new patch version
-		return "06";
+		return "08";
 	}
 
 	public static void main(String[] args) throws Exception {
