@@ -5,7 +5,6 @@ node {
     def shortCommit
   try {
         dir('SpringLab') {
-            stages {
                 def mvnHome = tool 'M3'
                 //Step #1. checkout the files
                 stage ("Code checkout")  {
@@ -46,7 +45,6 @@ node {
                         setBuildStatus("ci/jenkins/build-status", "Build # ${env.BUILD_NUMBER} is pass", 'SUCCESS')
                     }
                 }
-        }
    } catch(err){
        //bitbucketStatusNotify(buildState: 'FAILED')
        //jiraComment(issueKey: "${ISSUE_ID}", body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) was failed. Please go to ${env.BUILD_URL}.")
