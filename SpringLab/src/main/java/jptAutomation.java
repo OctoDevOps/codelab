@@ -32,7 +32,7 @@ public class jptAutomation {
 	@ResponseBody
 	String getBuildVersion() {
 		//updated a new build version
-		return "02";
+		return "03";
 	}
 
 	//IAE-3
@@ -40,10 +40,8 @@ public class jptAutomation {
 	@ResponseBody
 	String getPatchVersion() {
 		//updated a new patch version
-		return "05";
+		return "06";
 	}
-
-
 
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(jptAutomation.class, args);
