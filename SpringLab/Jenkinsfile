@@ -40,7 +40,7 @@ node {
                                 error "Pipeline aborted due to quality gate failure: ${qg.status}"
                                 }
                             }
-
+                        }
                 stage("Stop, Deploy and Restart"){
                     echo "Build package is ready to deploy"
                     // shutdown
