@@ -4,14 +4,15 @@ import java.lang.String
 node {
     def shortCommit
   try {
+
+        //Step #1. checkout the files
+        stage ("Code checkout")  {
+                credentialsId: 'dinesh'
+                echo 'Checking out the files from repo...' + env.BRANCH_NAME
+                git 'https://github.com/OctoDevOps/codelab.git'
+                }
         dir('SpringLab') {
                 def mvnHome = tool 'M3'
-                //Step #1. checkout the files
-                stage ("Code checkout")  {
-                        credentialsId: 'dinesh'
-                        echo 'Checking out the files from repo...' + env.BRANCH_NAME
-                        git 'https://github.com/OctoDevOps/codelab.git'
-                        }
                 //Step #2. Build with unit testing
                 stage("Build with Unit Testing"){
                             def targetVersion = "${env.BUILD_NUMBER}" //getDevVersion()
