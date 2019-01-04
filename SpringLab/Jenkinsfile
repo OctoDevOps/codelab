@@ -20,7 +20,7 @@ node {
                             print 'target build version...'
                             print targetVersion
                             withSonarQubeEnv('localhost_sonarqube') {
-                                sh "pwd;'${mvnHome}/bin/mvn' -Dintegration-tests.skip=true -Dbuild.number=${targetVersion} clean sonar:sonar package"
+                                sh "pwd;'${mvnHome}/bin/mvn' -Dintegration-tests.skip=true -Dbuild.number=${targetVersion} clean compile test sonar:sonar package"
                             }
                             def pom = readMavenPom file: 'pom.xml'
                             // get the current development version
