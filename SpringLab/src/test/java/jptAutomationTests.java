@@ -29,6 +29,11 @@ public class jptAutomationTests {
 		assertEquals("Validated getBuildVersion() API","05",m_objAutomation.getBuildVersion());
 	}
 
+	@Test
+	public void test_home(){
+		assertNotNull(m_objAutomation.home());
+	}
+
 }
 
 
