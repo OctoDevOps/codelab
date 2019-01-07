@@ -1,6 +1,5 @@
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,7 +30,7 @@ public class jptAutomationTests {
 
 	@Test
 	public void test_home(){
-		AssertNotNull(m_objAutomation.home());
+		assertNotNull(m_objAutomation.home());
 	}
 
 }
