@@ -31,7 +31,7 @@ public class jptAutomationTests {
 
 	@Test
 	public void test_home(){
-		assertNotNull(m_objAutomation.home());
+		AssertNotNull(m_objAutomation.home());
 	}
 
 }
