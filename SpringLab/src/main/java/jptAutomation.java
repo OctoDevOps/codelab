@@ -43,6 +43,16 @@ public class jptAutomation {
 		return "08";
 	}
 
+	//IAE-3
+	@RequestMapping(value = "/rel/team", method = RequestMethod.GET)
+	@ResponseBody
+	String getTeamName(int nTeamId) {
+		//updated a new patch version
+		if(nTeamId == 1)
+			return "copper";
+		return "blue";
+	}
+
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(jptAutomation.class, args);
 	}
