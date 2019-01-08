@@ -49,8 +49,10 @@ public class jptAutomation {
 	String getTeamName(int nTeamId) {
 		//updated a new patch version
 		if(nTeamId == 1)
-			return "copper";
-		return "blue";
+			return "IT";
+		if(nTeamId == 2)
+			return "MGMT";
+		return "SUPPORT";
 	}
 
 	public static void main(String[] args) throws Exception {
