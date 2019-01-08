@@ -43,6 +43,14 @@ public class jptAutomationTests {
 		assertEquals("Validated getTeamName() API","SUPPORT",m_objAutomation.getTeamName(0));
 		assertEquals("Validated getTeamName() API","MGMT",m_objAutomation.getTeamName(2));
 	}
+
+	/*
+	@Test
+	public void test_getColorTeamName(){
+		assertEquals("Validated getTeamName() API","Blue",m_objAutomation.getColorTeamName(0));
+		assertEquals("Validated getTeamName() API","Black",m_objAutomation.getColorTeamName(2));
+	}
+	*/
 	
 
 }

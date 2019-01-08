@@ -55,6 +55,17 @@ public class jptAutomation {
 		return "SUPPORT";
 	}
 
+	@RequestMapping(value = "/rel/colorteam", method = RequestMethod.GET)
+	@ResponseBody
+	String getColorTeamName(int nTeamId) {
+		//updated a new patch version
+		if(nTeamId == 1)
+			return "Copper";
+		if(nTeamId == 2)
+			return "Black";
+		return "Blue";
+	}
+
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(jptAutomation.class, args);
 	}
