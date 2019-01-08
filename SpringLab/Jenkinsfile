@@ -13,10 +13,10 @@ node {
                 }
         dir('SpringLab') {
                 def mvnHome = tool 'M3'
+                def targetVersion = "${env.BUILD_NUMBER}" //getDevVersion()
                 //Step #2. Build with unit testing
                 stage("Build with Unit Testing ")
                 {
-                            def targetVersion = "${env.BUILD_NUMBER}" //getDevVersion()
                             print 'target build version...'
                             print targetVersion
                             withSonarQubeEnv('localhost_sonarqube') {
@@ -41,7 +41,7 @@ node {
                                     print developmentArtifactVersion
                                     // execute the unit testing and collect the reports
                                     //junit '**//*target/unit-testing-reports/TEST-*.xml'
-                                    //archive 'target*//*.jar'
+                                    archive 'target*//*.jar'
                                 }
                             }
                         }
