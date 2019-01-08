@@ -41,7 +41,7 @@ node {
                                     print developmentArtifactVersion
                                     // execute the unit testing and collect the reports
                                     //junit '**//*target/unit-testing-reports/TEST-*.xml'
-                                    archive 'target*//*.jar'
+                                    //archive 'target*//*.jar'
                                 }
                             }
                         }
