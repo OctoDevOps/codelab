@@ -37,6 +37,11 @@ public class jptAutomationTests {
 	public void test_getRel(){
 		assertNotNull(m_objAutomation.getRel());
 	}
+
+	@Test
+	public void test_getTeamName(){
+		assertEquals("Validated getTeamName() API","SUPPORT",m_objAutomation.getTeamName(0));
+	}
 	
 
 }
