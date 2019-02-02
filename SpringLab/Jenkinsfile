@@ -56,7 +56,7 @@ node {
                     sh 'nohup java -Dserver.port=8081 -jar /Users/dineshganesan/codelab/buildrun/*.jar &'
                     echo "Successfully launched the app"
                     // wait for application to respond
-                    sh 'while ! httping -qc1 http://localhost:8081 ; do sleep 1 ; done'
+                    //sh 'while ! httping -qc1 http://localhost:8081 ; do sleep 1 ; done'
                     }
                 stage("Update JIRA"){
                         updateJira("${env.BUILD_NUMBER}")
