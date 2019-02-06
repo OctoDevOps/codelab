@@ -1,0 +1,55 @@
+{
+	"info": {
+		"_postman_id": "2874397c-6cae-4cfd-a266-20a38c1f9d9e",
+		"name": "JPT_Automation_Verison_Mgmt",
+		"description": "This is a sample API testing collection to validate the API test automation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get_rel_Version",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "492c2e2b-b018-4099-8894-b3f322148cf0",
+						"exec": [
+							"// example using pm.response.to.have",
+							"pm.test(\"response is ok\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"/rel API validation\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    console.log(jsonData);",
+							"    pm.expect(jsonData.value).to.eql(\"16.05\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8081/rel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"rel"
+					]
+				},
+				"description": "to get SAM release version"
+			},
+			"response": []
+		}
+	]
+}
