@@ -5,7 +5,7 @@ node {
     def shortCommit
   try {
 
-        //Step #1. checkout the files
+       //Step #1. checkout the files
         stage ("Code checkout")  {
                 credentialsId: 'dinesh'
                 echo 'Checking out the files from repo...' + env.BRANCH_NAME
@@ -52,7 +52,7 @@ node {
                     // shutdown
                     sh 'curl -X POST http://localhost:8081/shutdown || true'
                     // copy file to target location, and start the application
-                    sh 'cp target/*.jar /Users/dineshganesan/codelab/buildrun;'
+                    sh 'cp target/*.jar /Users/dineshganesan/codelab/buildrun/;'
                     withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
                          sh 'nohup java -Dserver.port=8081 -jar /Users/dineshganesan/codelab/buildrun/*.jar &'
                     }
