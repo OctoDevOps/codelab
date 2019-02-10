@@ -76,9 +76,7 @@ node {
                         }
 
                         //sh 'newman run tests/Newman/our.postman_collection.json -e tests/Newman/env/test.postman_environment.json -r junit,html --reporter-junit-export var/reports/newman/junit/newman.xml --reporter-html-export var/reports/newman/html/index.html'
-                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'var/reports/newman/html', reportFiles: 'index.html', reportName: 'API Test Report', reportTitles: 'Integration Testing'])
                         //publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'Integration', reportFiles: 'index.html', reportName: 'API Testing', reportTitles: 'JPT Automation'])
-
 
                     }
                 }
@@ -89,6 +87,9 @@ node {
        print 'error ' + err
        throw err
    } 
+   finally{
+        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'var/reports/newman/html', reportFiles: 'index.html', reportName: 'API Test Report', reportTitles: 'Integration Testing'])
+   }
 }
 
     /**
