@@ -71,7 +71,7 @@ node {
 
                 stage("Integration Testing"){
                     dir('/Users/dineshganesan/codelab/QA_Scripts') {
-                        sh 'newman run JPT_Automation_Verison_Mgmt.postman_collection.json'
+                        sh 'newman run JPT_Automation_Verison_Mgmt.postman_collection.json ---reporters cli,junit,html'
                         print 'Integration testing is compelte'
                         }
 
@@ -88,7 +88,8 @@ node {
        throw err
    } 
    finally{
-        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'var/reports/newman/html', reportFiles: 'index.html', reportName: 'API Test Report', reportTitles: 'Integration Testing'])
+        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/Users/dineshganesan/codelab/QA_Scripts/newman', reportFiles: '*.html', reportName: 'API Test Report', reportTitles: 'Integration Testing'])
+        junit '/Users/dineshganesan/codelab/QA_Scripts/newman/*.xml' 
    }
 }
 
