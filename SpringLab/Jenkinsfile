@@ -3,7 +3,6 @@ import java.lang.String
 
 node {
     def shortCommit
-    checkout scm
   try {
 
        //Step #1. checkout the files
@@ -89,7 +88,8 @@ node {
        throw err
    } 
    finally{
-        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/Users/dineshganesan/codelab/QA_Scripts/newman/', reportFiles: 'index.html', reportName: 'API Test Report', reportTitles: 'Integration Testing'])
+        print 'Generating HTML Report... '
+        publishHTML(target:[allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/Users/dineshganesan/codelab/QA_Scripts/newman/', reportFiles: 'index.html', reportName: 'API Test Report', reportTitles: 'Integration Testing'])
         //junit '/Users/dineshganesan/codelab/QA_Scripts/**/*.xml' 
         
    }
