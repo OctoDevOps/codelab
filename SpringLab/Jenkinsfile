@@ -89,7 +89,7 @@ node {
    } 
    finally{
         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/Users/dineshganesan/codelab/QA_Scripts/newman', reportFiles: 'index.html', reportName: 'API Test Report', reportTitles: 'Integration Testing'])
-        junit '/Users/dineshganesan/codelab/QA_Scripts/**/*.xml' 
+        //junit '/Users/dineshganesan/codelab/QA_Scripts/**/*.xml' 
         
    }
 }
