@@ -18,12 +18,7 @@
 							"pm.test(\"response is ok\", function () {",
 							"    pm.response.to.have.status(200);",
 							"});",
-							"",
-							"pm.test(\"/rel API validation\", function () {",
-							"    var jsonData = pm.response.json();",
-							"    console.log(jsonData);",
-							"    pm.expect(jsonData.value).to.eql(\"16.05\");",
-							"});"
+							""
 						],
 						"type": "text/javascript"
 					}
