@@ -88,7 +88,7 @@ node {
        throw err
    } 
    finally{
-        print 'Generating HTML Repot ' + err
+        print 'Generating HTML Repot ...'
         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '../QA_Scripts/newman/', reportFiles: 'index.html', reportName: 'API Test Report', reportTitles: 'Integration Testing'])
         //junit '/Users/dineshganesan/codelab/QA_Scripts/**/*.xml' 
         
