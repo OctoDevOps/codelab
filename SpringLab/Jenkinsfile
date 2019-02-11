@@ -71,7 +71,7 @@ node {
 
                 stage("Integration Testing"){
                 //    dir('/Users/dineshganesan/codelab/QA_Scripts') {
-                        sh 'newman run ../QA_Scripts/JPT_Automation_Verison_Mgmt.postman_collection.json --reporters cli,junit,html --reporter-html-export index.html'
+                        sh 'newman run ../QA_Scripts/JPT_Automation_Verison_Mgmt.postman_collection.json --reporters cli,junit,html --reporter-junit-export var/reports/newman/junit/newman.xml --reporter-html-export var/reports/newman/html/index.html'
                         print 'Integration testing is compelte'
                 //        }
 
