@@ -70,10 +70,10 @@ node {
                     }
 
                 stage("Integration Testing"){
-                    dir('/Users/dineshganesan/codelab/QA_Scripts') {
-                        sh 'newman run JPT_Automation_Verison_Mgmt.postman_collection.json --reporters cli,junit,html --reporter-html-export index.html'
+                //    dir('/Users/dineshganesan/codelab/QA_Scripts') {
+                        sh 'newman run ../QA_Scripts/JPT_Automation_Verison_Mgmt.postman_collection.json --reporters cli,junit,html --reporter-html-export index.html'
                         print 'Integration testing is compelte'
-                        }
+                //        }
 
                         //sh 'newman run tests/Newman/our.postman_collection.json -e tests/Newman/env/test.postman_environment.json -r junit,html --reporter-junit-export var/reports/newman/junit/newman.xml --reporter-html-export var/reports/newman/html/index.html'
                         //publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'Integration', reportFiles: 'index.html', reportName: 'API Testing', reportTitles: 'JPT Automation'])
@@ -88,8 +88,8 @@ node {
        throw err
    } 
    finally{
-        print 'Generating HTML Report... '
-        publishHTML(target:[allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/Users/dineshganesan/codelab/QA_Scripts/newman/', reportFiles: 'index.html', reportName: 'API Test Report', reportTitles: 'Integration Testing'])
+        print 'Generating HTML Repot ' + err
+        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/Users/dineshganesan/codelab/QA_Scripts/newman/', reportFiles: 'index.html', reportName: 'API Test Report', reportTitles: 'Integration Testing'])
         //junit '/Users/dineshganesan/codelab/QA_Scripts/**/*.xml' 
         
    }
@@ -153,4 +153,13 @@ node {
     job.getBuilds().each { it.delete() }
     job.nextBuildNumber = 1
     job.save()
+*/
+
+/*
+300  export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home
+  301  echo $PATH
+  302  export PATH=$PATH:$JAVA_HOME/bin
+  303  echo $PATH
+  304  history
+  305  sh start-jira.sh
 */
