@@ -198,4 +198,6 @@ def notifyBuild(String buildStatus = 'STARTED') {
   303  echo $PATH
   304  history
   305  sh start-jira.sh
+
+  System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "")
 */
