@@ -14,7 +14,7 @@ public class jptAutomation {
 	//IAE-0
 	@RequestMapping(value = "/rel", method = RequestMethod.GET)
 	@ResponseBody
-	String getRel(int nAppId) {
+	String getRel(long nAppId) {
 		//updated a new release version
 		if(nAppId == 1) //Web
 			return getWebRelVersion()+"."+getBuildVersion();
