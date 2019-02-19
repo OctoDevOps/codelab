@@ -35,7 +35,7 @@ public class jptAutomationTests {
 
 	@Test
 	public void test_getRel(){
-		assertNotNull(m_objAutomation.getRel());
+		assertNotNull(m_objAutomation.getRel(0));
 	}
 
 	@Test
