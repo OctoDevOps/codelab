@@ -16,12 +16,12 @@
     "member": [
     {
       "id": 1,
-      "title": "Application Architect"
+      "title": "Application Architect",
       "name":"T"
     },
     {
       "id": 2,
-      "title": "Data Architect"
+      "title": "Data Architect",
       "name":"Vyktor"
     }
   ],
