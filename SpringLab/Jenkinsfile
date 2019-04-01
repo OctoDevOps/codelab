@@ -102,8 +102,8 @@ node {
                                 rm update.json
                             '''
                         }
-                    }
-                } */
+                    }*/
+                } 
    } catch(err){
        //bitbucketStatusNotify(buildState: 'FAILED')
        //jiraComment(issueKey: "${ISSUE_ID}", body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) was failed. Please go to ${env.BUILD_URL}.")
