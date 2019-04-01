@@ -72,7 +72,7 @@ node {
                 stage("Integration Testing"){
                 //    dir('/Users/dineshganesan/codelab/QA_Scripts') {
                         notifyBuild("Integration Testing Started..")
-                        sh 'newman run ../QA_Scripts/JPT_Automation_Verison_Mgmt.postman_collection.json --data ../QA_Scripts/getRel_testdata.csv --reporters cli,junit,html --reporter-junit-export var/reports/newman/junit/newman.xml --reporter-html-export var/reports/newman/html/index.html'
+                        sh 'newman run ../QA_Scripts/JPT_Automation_Verison_Mgmt.postman_collection.json -d ../QA_Scripts/getRel_testdata.csv --reporters cli,junit,html --reporter-junit-export var/reports/newman/junit/newman.xml --reporter-html-export var/reports/newman/html/index.html'
                         print 'Integration testing is compelte'
                         //publishing the result in HTML format
                         //publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'SpringLab/var/reports/newman/html', reportFiles: 'index.html', reportName: 'JPT - API Test Report', reportTitles: 'Integration Testing'])
