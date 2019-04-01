@@ -117,6 +117,7 @@ node {
         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'SpringLab/var/reports/newman/html', reportFiles: 'index.html', reportName: 'JPT - API Test Report', reportTitles: 'Integration Testing'])
         //junit '/Users/dineshganesan/codelab/QA_Scripts/**/*.xml' 
         //publishConfluence editorList: [confluenceWritePage(confluenceFile('index.html'))], labels: 'Automation Test', pageName: 'API Integration Testing', replaceAttachments: true, siteName: 'localhost', spaceName: 'JA'
+        print 'Publishing the HTML Repot to Confluence...'
         publishConfluence attachArchivedArtifacts: true, pageName: 'API Integration Testing', siteName: 'localhost', spaceName: 'JA'
    }
 }
