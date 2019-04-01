@@ -1,0 +1,31 @@
+{
+  "apps": [
+    {
+      "id": 1,
+      "title": "Opportunity"
+    },
+    {
+      "id": 2,
+      "title": "Federal Hierarchy"
+    },
+    {
+      "id": 3,
+      "title": "Login.gov"
+    }
+  ],
+    "member": [
+    {
+      "id": 1,
+      "title": "Application Architect",
+      "name":"T"
+    },
+    {
+      "id": 2,
+      "title": "Data Architect",
+      "name":"Vyktor"
+    }
+  ],
+  "owner": {
+    "name": "Dinesh"
+  }
+}
