@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="JPT_Automation_Verison_Mgmt" tests="1" time="0.000">
+  <testsuite name="get_rel_Version" id="01cf5c8b-f394-4892-999e-e8fcc051bf75" timestamp="2019-03-15T17:24:52.093Z" classname="get_rel_Version" tests="2" failures="2" errors="1" time="0.000">
+    <error>
+      <![CDATA[Iteration: 0
+RequestError: Error: connect ECONNREFUSED 127.0.0.1:8081
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1163:14)
+
+---
+]]>
+    </error>
+    <testcase name="response is ok" time="0.000" classname="get_rel_Version">
+      <failure type="AssertionFailure" message="expected { Object (id, _details, ...) } to have property 'code'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 2874397c-6cae-4cfd-a266-20a38c1f9d9e.]]>
+        <![CDATA[Collection name: JPT_Automation_Verison_Mgmt.]]>
+        <![CDATA[Request name: get_rel_Version.]]>
+        <![CDATA[Test description: response is ok.]]>
+        <![CDATA[Error message: expected { Object (id, _details, ...) } to have property 'code'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected { Object (id, _details, ...) } to have property 'code'
+   at Object.eval sandbox-script.js:1:1).]]>
+      </failure>
+    </testcase>
+    <testcase name="returns valid output" time="0.000" classname="get_rel_Version">
+      <failure type="AssertionFailure" message="expected undefined to deeply equal '16.05'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 2874397c-6cae-4cfd-a266-20a38c1f9d9e.]]>
+        <![CDATA[Collection name: JPT_Automation_Verison_Mgmt.]]>
+        <![CDATA[Request name: get_rel_Version.]]>
+        <![CDATA[Test description: returns valid output.]]>
+        <![CDATA[Error message: expected undefined to deeply equal '16.05'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected undefined to deeply equal '16.05'
+   at Object.eval sandbox-script.js:2:1).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+</testsuites>

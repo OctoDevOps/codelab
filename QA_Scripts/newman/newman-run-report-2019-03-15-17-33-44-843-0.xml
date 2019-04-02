@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="JPT_Automation_Verison_Mgmt" tests="1" time="0.094">
+  <testsuite name="get_rel_Version" id="67db6cb3-2bda-49a8-b99e-f75d6999fb41" timestamp="2019-03-15T17:33:44.679Z" classname="get_rel_Version" tests="2" failures="0" errors="0" time="0.094">
+    <testcase name="response is ok" time="0.094"/>
+    <testcase name="returns valid release Version" time="0.094"/>
+  </testsuite>
+</testsuites>

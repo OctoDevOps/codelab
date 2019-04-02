@@ -14,21 +14,54 @@
 					"script": {
 						"id": "492c2e2b-b018-4099-8894-b3f322148cf0",
 						"exec": [
+							"var inputData = pm.variables.get(\"ComponentType\"); ",
+							"",
 							"// example using pm.response.to.have",
 							"pm.test(\"response is ok\", function () {",
 							"    pm.response.to.have.status(200);",
 							"});",
 							"",
-							"// example using pm.response.to.have",
-							"pm.test(\"returns valid output\", function () {",
-							"   pm.expect(pm.response.text()).eql(\"16.05\")",
-							"});",
+							"if(inputData == 2)",
+							"{",
+							"    // example using pm.response.to.have",
+							"    pm.test(\"returns valid API Version\", function () {",
+							"       pm.expect(pm.response.text()).eql(\"02.05\")",
+							"    });",
+							"}",
+							"else if(inputData == 1)",
+							"{",
+							"    // example using pm.response.to.have",
+							"    pm.test(\"returns valid Front End Version\", function () {",
+							"       pm.expect(pm.response.text()).eql(\"01.05\")",
+							"    });",
+							"}",
+							"else",
+							"{",
+							"    // example using pm.response.to.have",
+							"    pm.test(\"returns valid release Version\", function () {",
+							"       pm.expect(pm.response.text()).eql(\"16.05\")",
+							"    });",
+							"}",
+							"",
 							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "12f5d7ae-c026-49fb-bdff-4aa0dc6e3960",
+						"exec": [
+							"pm.environment.set(\"ComponentType\", 4);"
 						],
 						"type": "text/javascript"
 					}
 				}
 			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -37,14 +70,20 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8081/rel",
+					"raw": "http://localhost:8082/rel?nAppId={{ComponentType}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8081",
+					"port": "8082",
 					"path": [
 						"rel"
+					],
+					"query": [
+						{
+							"key": "nAppId",
+							"value": "{{ComponentType}}"
+						}
 					]
 				},
 				"description": "to get SAM release version"

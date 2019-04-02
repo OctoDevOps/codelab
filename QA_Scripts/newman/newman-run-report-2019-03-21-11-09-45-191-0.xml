@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="JPT_Automation_Verison_Mgmt" tests="4" time="0.591">
+  <testsuite name="get_rel_Version" id="8d2708e7-30fa-40fd-802d-17afcbe20885" timestamp="2019-03-21T11:09:44.274Z" classname="get_rel_Version" tests="2" failures="0" errors="0" time="0.148">
+    <testcase name="response is ok" time="0.006"/>
+    <testcase name="returns valid Front End Version" time="0.006"/>
+    <testcase name="returns valid API Version" time="0.006"/>
+    <testcase name="returns valid release Version" time="0.006"/>
+  </testsuite>
+</testsuites>
