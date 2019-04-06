@@ -1,4 +1,4 @@
- {{#with summary}}
+
 <h1>Overall Status : Success <sup>
     <ac:emoticon ac:name="tick"/>
   </sup>
@@ -6,6 +6,7 @@
 <table class="relative-table" style="width: 30.8721%;">
   <colgroup> <col style="width: 21.2483%;border-color:white;"/> <col style="width: 78.6853%;border-style: none;"/> </colgroup>
   <tbody>
+    {{#with summary}}
     <tr>
       <td colspan="1">
         <strong>Collection :</strong>
@@ -19,7 +20,8 @@
       </td>
       <td colspan="1">{{collection.description}}</td>
     </tr>
-    {{/if}}   
+    {{/if}} 
+    {{/with}}  
     <tr>
       <td colspan="1">
         <strong>Executed Time :</strong>
@@ -28,6 +30,6 @@
     </tr>
   </tbody>
 </table>
-{{/with}}
+
 
 
