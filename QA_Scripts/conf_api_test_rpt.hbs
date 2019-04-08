@@ -4,7 +4,7 @@
   </sup>
 </h1>
 <table class="relative-table" style="width: 30.8721%;">
-  <colgroup> <col style="width: 21.2483%;border-color:white;"/> <col style="width: 78.6853%;border-style: none;"/> </colgroup>
+  <colgroup> <col style="width: 31.9625%;border-color:white;"/> <col style="width: 69.7932%;border-style: none;"/> </colgroup>
   <tbody>
     {{#with summary}}
     <tr>
@@ -21,6 +21,24 @@
       <td colspan="1">{{collection.description}}</td>
     </tr>
     {{/if}} 
+          <tr>
+      <td colspan="1">
+        <strong>Total run duration:</strong>
+      </td>
+      <td colspan="1">{{duration}}</td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <strong>Total data received:</strong>
+      </td>
+      <td colspan="1">{{responseTotal}}</td>
+    </tr>
+    <tr>
+      <td colspan="1">
+        <strong>Average response time:</strong>
+      </td>
+      <td colspan="1">{{responseAverage}}</td>
+    </tr>
     {{/with}}  
     <tr>
       <td colspan="1">
@@ -30,6 +48,86 @@
     </tr>
   </tbody>
 </table>
+
+   {{#with summary}}
+        <h1>Total Failures : <span style="color: rgb(51,153,102);">
+            <strong>{{failures.length}}</strong>
+        </span>
+        </h1>
+        {{#with stats}}
+            <table class="relative-table" style="width: 36.2209%;">
+            <colgroup>
+                <col style="width: 54.8633%;"/>
+                <col style="width: 23.3119%;"/>
+                <col style="width: 21.5032%;"/>
+            </colgroup>
+            <tbody>
+                <tr>
+                <th>
+                    <br/>
+                </th>
+                <th style="text-align: center;">Total</th>
+                <th style="text-align: center;">Failed</th>
+                </tr>
+                <tr>
+                <td colspan="1">
+                    <span style="color: rgb(51,51,51);">Iterations</span>
+                </td>
+                <td colspan="1">
+                    <span style="color: rgb(51,51,51);">{{iterations.total}}</span>
+                </td>
+                <td colspan="1">
+                    <span style="color: rgb(51,51,51);">{{iterations.failed}}</span>
+                </td>
+                </tr>
+                <tr>
+                <td colspan="1">
+                    <span style="color: rgb(51,51,51);">Requests</span>
+                </td>
+                <td colspan="1">
+                    <span style="color: rgb(51,51,51);">{{requests.total}}</span>
+                </td>
+                <td colspan="1">
+                    <span style="color: rgb(51,51,51);">{{requests.failed}}</span>
+                </td>
+                </tr>
+                <tr>
+                <td colspan="1">
+                    <span style="color: rgb(51,51,51);">Prerequest Scripts</span>
+                </td>
+                <td colspan="1">
+                    <span style="color: rgb(51,51,51);">{{prerequestScripts.total}}</span>
+                </td>
+                <td colspan="1">
+                    <span style="color: rgb(51,51,51);">{{prerequestScripts.failed}}</span>
+                </td>
+                </tr>
+                <tr>
+                <td colspan="1">
+                    <span style="color: rgb(51,51,51);">Test Scripts</span>
+                </td>
+                <td colspan="1">
+                    <span style="color: rgb(51,51,51);">{{testScripts.total}}</span>
+                </td>
+                <td colspan="1">
+                    <span style="color: rgb(51,51,51);">{{testScripts.failed}}</span>
+                </td>
+                </tr>
+                <tr>
+                <td colspan="1">
+                    <span style="color: rgb(51,51,51);">Assertions</span>
+                </td>
+                <td colspan="1">
+                    <span style="color: rgb(51,51,51);">{{assertions.total}}</span>
+                </td>
+                <td colspan="1">
+                    <span style="color: rgb(51,51,51);">{{assertions.failed}}</span>
+                </td>
+                </tr>
+            </tbody>
+            </table>
+        {{/with}}
+    {{/with}}
 
 
 
