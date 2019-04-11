@@ -3,7 +3,7 @@
     <ac:emoticon ac:name="tick"/>
   </sup>
 </h1>
-
+<hr/>
 {{#with summary}}
 <ac:structured-macro ac:macro-id="03c1d490-b119-445b-b91c-52fd0f7c346d" ac:name="section" ac:schema-version="1">
   <ac:rich-text-body>
@@ -12,31 +12,26 @@
     </p>
   
     <ac:structured-macro ac:macro-id="summary_header_tbl" ac:name="column" ac:schema-version="1">
-      <ac:parameter ac:name="width">60px</ac:parameter>
-      <ac:rich-text-body>
-        <p>
-          <strong>
-            <strong title="">Collection :</strong>
-          </strong>
-        </p>
-        {{#if collection.description}}
-        <p>Description :</p>
-        {{/if}} 
-        <p>Total run duration:</p>
-        <p>Total data received:</p>
-        <p>Average response time:</p>
-        <p>Executed Time :</p>
-      </ac:rich-text-body>
-
+      <ac:parameter ac:name="width">20px</ac:parameter>
+        <ac:rich-text-body>
+            <p>
+            <strong>
+                <strong title="">Collection :</strong>
+            </strong>
+            </p>
+            {{#if collection.description}}
+            <p>Description :</p>
+            {{/if}} 
+            <p>Total run duration:</p>
+            <p>Total data received:</p>
+            <p>Average response time:</p>
+            <p>Executed Time :</p>
+        </ac:rich-text-body>
     </ac:structured-macro>
-    <p class="auto-cursor-target">
-      <br/>
-    </p>
-        <p class="auto-cursor-target">
-      <br/>
-    </p>
+    <p class="auto-cursor-target"><br/></p>
+    <p class="auto-cursor-target"><br/></p>
     <ac:structured-macro ac:macro-id="summary_header_details_tbl" ac:name="column" ac:schema-version="1">
-      <ac:parameter ac:name="width">60px</ac:parameter>
+      <ac:parameter ac:name="width">20px</ac:parameter>
       <ac:rich-text-body>
         <p>{{collection.name}}</p>
         {{#if collection.description}}
@@ -45,7 +40,21 @@
         <p>{{duration}}</p>
         <p>{{responseTotal}}</p>
         <p>{{responseTotal}}(approx)</p>
+{{/with}}
         <p>{{timestamp}}</p>
+      </ac:rich-text-body>
+    </ac:structured-macro>
+    <p class="auto-cursor-target"><br/></p>
+
+    <p class="auto-cursor-target">
+      <br/>
+    </p>
+    <ac:structured-macro ac:macro-id="6d5fba68-44ab-4c1d-947b-cadd6afbd666" ac:name="column" ac:schema-version="1">
+      <ac:parameter ac:name="width">40%</ac:parameter>
+      <ac:rich-text-body>
+        <p>
+          <br/>
+        </p>
       </ac:rich-text-body>
     </ac:structured-macro>
     <p class="auto-cursor-target">
@@ -53,7 +62,7 @@
     </p>
 </ac:rich-text-body>
 </ac:structured-macro>
-{{/with}}
+
 
 <table class="relative-table" style="width: 30.8721%;">
   <colgroup> <col style="width: 31.9625%;border-color:white;"/> <col style="width: 69.7932%;border-style: none;"/> </colgroup>
@@ -181,7 +190,6 @@
         {{/with}}
     {{/with}}
 
-    </p>
 <h1>API Requests</h1>
 <p>
   <br/>
