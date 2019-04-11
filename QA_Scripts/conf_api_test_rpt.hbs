@@ -4,6 +4,7 @@
   </sup>
 </h1>
 <hr/>
+<br/>
 {{#with summary}}
 <ac:structured-macro ac:macro-id="03c1d490-b119-445b-b91c-52fd0f7c346d" ac:name="section" ac:schema-version="1">
   <ac:rich-text-body>
@@ -62,53 +63,6 @@
     </p>
 </ac:rich-text-body>
 </ac:structured-macro>
-
-
-<table class="relative-table" style="width: 30.8721%;">
-  <colgroup> <col style="width: 31.9625%;border-color:white;"/> <col style="width: 69.7932%;border-style: none;"/> </colgroup>
-  <tbody>
-    {{#with summary}}
-    <tr>
-      <td colspan="1">
-        <strong>Collection :</strong>
-      </td>
-      <td colspan="1">{{collection.name}} </td>
-    </tr>
-    {{#if collection.description}}
-    <tr>
-      <td colspan="1">
-        <strong>Description :</strong>
-      </td>
-      <td colspan="1">{{collection.description}}</td>
-    </tr>
-    {{/if}} 
-          <tr>
-      <td colspan="1">
-        <strong>Total run duration:</strong>
-      </td>
-      <td colspan="1">{{duration}}</td>
-    </tr>
-    <tr>
-      <td colspan="1">
-        <strong>Total data received:</strong>
-      </td>
-      <td colspan="1">{{responseTotal}}(approx)</td>
-    </tr>
-    <tr>
-      <td colspan="1">
-        <strong>Average response time:</strong>
-      </td>
-      <td colspan="1">{{responseAverage}}</td>
-    </tr>
-    {{/with}}  
-    <tr>
-      <td colspan="1">
-        <strong>Executed Time :</strong>
-      </td>
-      <td colspan="1">{{timestamp}}</td>
-    </tr>
-  </tbody>
-</table>
 
    {{#with summary}}
         <h1>Total Failures : <span style="color: rgb(51,153,102);">
