@@ -4,12 +4,14 @@
   </sup>
 </h1>
 
+{{#with summary}}
 <ac:structured-macro ac:macro-id="03c1d490-b119-445b-b91c-52fd0f7c346d" ac:name="section" ac:schema-version="1">
   <ac:rich-text-body>
     <p class="auto-cursor-target">
       <br/>
     </p>
-    <ac:structured-macro ac:macro-id="cd0e95d7-5fbc-46a3-a0c0-9a43b25e9beb" ac:name="column" ac:schema-version="1">
+  
+    <ac:structured-macro ac:macro-id="summary_header_tbl" ac:name="column" ac:schema-version="1">
       <ac:parameter ac:name="width">60px</ac:parameter>
       <ac:rich-text-body>
         <p>
@@ -17,36 +19,14 @@
             <strong title="">Collection :</strong>
           </strong>
         </p>
-        <p>
-          <strong>Description :</strong>
-        </p>
-        <p>
-          <strong>Total run duration:</strong>
-        </p>
-        <p>
-          <strong>Total data received:</strong>
-        </p>
-        <p>
-          <strong>Average response time:</strong>
-        </p>
-        <p>
-          <strong>Executed Time :</strong>
-        </p>
-        <p>
-          <strong>Total run duration:</strong>
-        </p>
-        <p>
-          <strong>Total data received:</strong>
-        </p>
-        <p>
-          <strong>Average response time:</strong>
-        </p>
-        <p>
-          <strong>Executed Time:</strong>
-        </p>
+        {{#if collection.description}}
+        <p>Description :</p>
+        {{/if}} 
+        <p>Total run duration:</p>
+        <p>Total data received:</p>
+        <p>Average response time:</p>
+        <p>Executed Time :</p>
       </ac:rich-text-body>
-
-
 
     </ac:structured-macro>
     <p class="auto-cursor-target">
@@ -55,49 +35,25 @@
         <p class="auto-cursor-target">
       <br/>
     </p>
-    <ac:structured-macro ac:macro-id="cd0e95d7-5fbc-46a3-a0c0-9a43b25e9beb" ac:name="column" ac:schema-version="1">
+    <ac:structured-macro ac:macro-id="summary_header_details_tbl" ac:name="column" ac:schema-version="1">
       <ac:parameter ac:name="width">60px</ac:parameter>
       <ac:rich-text-body>
-        <p>
-          <strong>
-            <strong title="">Collection :</strong>
-          </strong>
-        </p>
-        <p>
-          <strong>Description :</strong>
-        </p>
-        <p>
-          <strong>Total run duration:</strong>
-        </p>
-        <p>
-          <strong>Total data received:</strong>
-        </p>
-        <p>
-          <strong>Average response time:</strong>
-        </p>
-        <p>
-          <strong>Executed Time :</strong>
-        </p>
-        <p>
-          <strong>Total run duration:</strong>
-        </p>
-        <p>
-          <strong>Total data received:</strong>
-        </p>
-        <p>
-          <strong>Average response time:</strong>
-        </p>
-        <p>
-          <strong>Executed Time:</strong>
-        </p>
+        <p>{{collection.name}}</p>
+        {{#if collection.description}}
+        <p>{{collection.description}}</p>
+        {{/if}} 
+        <p>{{duration}}</p>
+        <p>{{responseTotal}}</p>
+        <p>{{responseTotal}}(approx)</p>
+        <p>{{timestamp}}</p>
       </ac:rich-text-body>
-
     </ac:structured-macro>
     <p class="auto-cursor-target">
       <br/>
     </p>
 </ac:rich-text-body>
 </ac:structured-macro>
+{{/with}}
 
 <table class="relative-table" style="width: 30.8721%;">
   <colgroup> <col style="width: 31.9625%;border-color:white;"/> <col style="width: 69.7932%;border-style: none;"/> </colgroup>
@@ -224,6 +180,95 @@
             </table>
         {{/with}}
     {{/with}}
+
+    </p>
+<h1>API Requests</h1>
+<p>
+  <br/>
+</p>
+<p style="margin-left: 30.0px;">Name : </p>
+<p style="margin-left: 30.0px;">Total tests run : </p>
+<table class="relative-table wrapped" style="width: 14.2442%;margin-left: 30.0px;">
+  <colgroup> <col style="width: 48.668%;"/> <col style="width: 50.7172%;"/> </colgroup>
+  <tbody style="margin-left: 30.0px;">
+    <tr style="margin-left: 30.0px;">
+      <th style="margin-left: 30.0px;">Passed</th>
+      <th style="margin-left: 30.0px;">Fail</th>
+    </tr>
+    <tr style="margin-left: 30.0px;">
+      <td colspan="1" style="margin-left: 30.0px;">8</td>
+      <td colspan="1" style="margin-left: 90.0px;">0</td>
+    </tr>
+  </tbody>
+</table>
+<p style="margin-left: 30.0px;">
+  <br/>
+</p>
+<ac:structured-macro ac:macro-id="05ad567f-7e19-45e6-8d82-16ea8e56bdd2" ac:name="expand" ac:schema-version="1">
+  <ac:parameter ac:name="title">get_rel_Version - Details</ac:parameter>
+  <ac:rich-text-body>
+    <p style="margin-left: 30.0px;">Description: </p>
+    <p style="margin-left: 30.0px;">
+      <br/>
+    </p>
+    <p style="margin-left: 30.0px;">Method</p>
+    <p style="margin-left: 30.0px;">URL</p>
+    <p style="margin-left: 30.0px;">
+      <br/>
+    </p>
+    <p style="margin-left: 30.0px;">Tests Performed</p>
+    <table class="wrapped" style="margin-left: 30.0px;">
+      <colgroup> <col/> <col/> <col/> </colgroup>
+      <thead style="margin-left: 30.0px;">
+        <tr style="margin-left: 30.0px;">
+          <th style="text-align: left;margin-left: 30.0px;">Name</th>
+          <th style="text-align: left;margin-left: 30.0px;">Pass count</th>
+          <th style="text-align: left;margin-left: 30.0px;">Fail count</th>
+        </tr>
+      </thead>
+      <tbody style="margin-left: 30.0px;">
+        <tr style="margin-left: 30.0px;">
+          <td style="margin-left: 30.0px;">response is ok</td>
+          <td style="margin-left: 30.0px;">4</td>
+          <td style="margin-left: 30.0px;">0</td>
+        </tr>
+        <tr style="margin-left: 30.0px;">
+          <td style="margin-left: 30.0px;">returns valid Front End Version</td>
+          <td style="margin-left: 30.0px;">1</td>
+          <td style="margin-left: 30.0px;">0</td>
+        </tr>
+        <tr style="margin-left: 30.0px;">
+          <td style="margin-left: 30.0px;">returns valid API Version</td>
+          <td style="margin-left: 30.0px;">1</td>
+          <td style="margin-left: 30.0px;">0</td>
+        </tr>
+        <tr style="margin-left: 30.0px;">
+          <td style="margin-left: 30.0px;">returns valid release Version</td>
+          <td style="margin-left: 30.0px;">2</td>
+          <td style="margin-left: 30.0px;">0</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="margin-left: 30.0px;">
+      <br/>
+    </p>
+    <p style="margin-left: 30.0px;">
+      <br/>
+    </p>
+  </ac:rich-text-body>
+</ac:structured-macro>
+<p class="auto-cursor-target" style="margin-left: 30.0px;">
+  <br/>
+</p>
+<p class="auto-cursor-target" style="margin-left: 30.0px;">
+  <br/>
+</p>
+<p class="auto-cursor-target" style="margin-left: 30.0px;">
+  <br/>
+</p>
+<p class="auto-cursor-target" style="margin-left: 30.0px;">
+  <br/>
+</p>
 
 
 
