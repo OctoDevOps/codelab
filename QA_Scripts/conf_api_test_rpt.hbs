@@ -166,48 +166,53 @@
 <p style="margin-left: 30.0px;">
   <br/>
 </p>
-<ac:structured-macro ac:macro-id="05ad567f-7e19-45e6-8d82-16ea8e56bdd2" ac:name="expand" ac:schema-version="1">
-  <ac:parameter ac:name="title">get_rel_Version - Details</ac:parameter>
-  <ac:rich-text-body>
-    <p style="margin-left: 30.0px;">Description: {{description.content}}</p> 
-    <p style="margin-left: 30.0px;">
-      <br/>
-    </p>
-    <p style="margin-left: 30.0px;">Method: {{method}}</p>
-    <p style="margin-left: 30.0px;">URL: {{method}}</p>
-    <p style="margin-left: 30.0px;">
-      <br/>
-    </p>
-     {{#if assertions.length}}
-      <p style="margin-left: 30.0px;">Tests Performed</p>
-      <table class="wrapped" style="margin-left: 30.0px;">
-        <colgroup> <col/> <col/> <col/> </colgroup>
-        <thead style="margin-left: 30.0px;">
-          <tr style="margin-left: 30.0px;">
-            <th style="text-align: left;margin-left: 30.0px;">Name</th>
-            <th style="text-align: left;margin-left: 30.0px;">Pass count</th>
-            <th style="text-align: left;margin-left: 30.0px;">Fail count</th>
-          </tr>
-        </thead>
-        <tbody style="margin-left: 30.0px;">
-          {{#each assertions}}
-          <tr style="margin-left: 30.0px;">
-            <td style="margin-left: 30.0px;">{{this.name}}</td>
-            <td style="margin-left: 30.0px;">{{this.passed}}</td>
-            <td style="margin-left: 30.0px;">{{this.failed}}</td>
-          </tr>
-          {{/each}}
-        </tbody>
-      </table>
-      {{/if}}
-    <p style="margin-left: 30.0px;">
-      <br/>
-    </p>
-    <p style="margin-left: 30.0px;">
-      <br/>
-    </p>
-  </ac:rich-text-body>
-</ac:structured-macro>
+{{#*inline "aggregations"}}
+  {{#each executions}}
+  <ac:structured-macro ac:macro-id="05ad567f-7e19-45e6-8d82-16ea8e56bdd2" ac:name="expand" ac:schema-version="1">
+    <ac:parameter ac:name="title">get_rel_Version - Details</ac:parameter>
+    <ac:rich-text-body>
+      <p style="margin-left: 30.0px;">Description: {{description.content}}</p> 
+      <p style="margin-left: 30.0px;">
+        <br/>
+      </p>
+      <p style="margin-left: 30.0px;">Method: {{method}}</p>
+      <p style="margin-left: 30.0px;">URL: {{method}}</p>
+      <p style="margin-left: 30.0px;">
+        <br/>
+      </p>
+      {{#if assertions.length}}
+        <p style="margin-left: 30.0px;">Tests Performed</p>
+        <table class="wrapped" style="margin-left: 30.0px;">
+          <colgroup> <col/> <col/> <col/> </colgroup>
+          <thead style="margin-left: 30.0px;">
+            <tr style="margin-left: 30.0px;">
+              <th style="text-align: left;margin-left: 30.0px;">Name</th>
+              <th style="text-align: left;margin-left: 30.0px;">Pass count</th>
+              <th style="text-align: left;margin-left: 30.0px;">Fail count</th>
+            </tr>
+          </thead>
+          <tbody style="margin-left: 30.0px;">
+            {{#each assertions}}
+            <tr style="margin-left: 30.0px;">
+              <td style="margin-left: 30.0px;">{{this.name}}</td>
+              <td style="margin-left: 30.0px;">{{this.passed}}</td>
+              <td style="margin-left: 30.0px;">{{this.failed}}</td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+        {{/if}}
+      <p style="margin-left: 30.0px;">
+        <br/>
+      </p>
+      <p style="margin-left: 30.0px;">
+        <br/>
+      </p>
+    </ac:rich-text-body>
+  </ac:structured-macro>
+  {{/each}}
+{{/inline}}
+
 <p class="auto-cursor-target" style="margin-left: 30.0px;">
   <br/>
 </p>
