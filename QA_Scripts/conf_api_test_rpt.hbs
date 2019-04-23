@@ -166,10 +166,10 @@
 <p style="margin-left: 30.0px;">
   <br/>
 </p>
-{{#*inline "aggregations"}}
-  {{#each executions}}
+{{#each aggregations}}
+    {{#if parent.name}}
   <ac:structured-macro ac:macro-id="05ad567f-7e19-45e6-8d82-16ea8e56bdd2" ac:name="expand" ac:schema-version="1">
-    <ac:parameter ac:name="title">get_rel_Version - Details</ac:parameter>
+    <ac:parameter ac:name="title">{{parent.id}} - Details</ac:parameter>
     <ac:rich-text-body>
       <p style="margin-left: 30.0px;">Description: {{description.content}}</p> 
       <p style="margin-left: 30.0px;">
@@ -210,8 +210,11 @@
       </p>
     </ac:rich-text-body>
   </ac:structured-macro>
+  {{> aggregations}}
+ {{else}}
+    {{> aggregations}}
+    {{/if}}
   {{/each}}
-{{/inline}}
 
 <p class="auto-cursor-target" style="margin-left: 30.0px;">
   <br/>
