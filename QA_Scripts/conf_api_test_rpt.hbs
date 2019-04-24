@@ -144,29 +144,6 @@
         {{/with}}
     {{/with}}
 
-<h1>API Requests</h1>
-<p>
-  <br/>
-</p>
-<p style="margin-left: 30.0px;">Name : </p>
-<p style="margin-left: 30.0px;">Total tests run : </p>
-<table class="relative-table wrapped" style="width: 14.2442%;margin-left: 30.0px;">
-  <colgroup> <col style="width: 48.668%;"/> <col style="width: 50.7172%;"/> </colgroup>
-  <tbody style="margin-left: 30.0px;">
-    <tr style="margin-left: 30.0px;">
-      <th style="margin-left: 30.0px;">Passed</th>
-      <th style="margin-left: 30.0px;">Fail</th>
-    </tr>
-    <tr style="margin-left: 30.0px;">
-      <td colspan="1" style="margin-left: 30.0px;">8</td>
-      <td colspan="1" style="margin-left: 90.0px;">0</td>
-    </tr>
-  </tbody>
-</table>
-<p style="margin-left: 30.0px;">
-  <br/>
-</p>
-
     {{#each aggregations}}
         {{#if parent.name}}
         <div class="panel-group" id="collapse-folder-{{parent.id}}" role="tablist" aria-multiselectable="true">
@@ -186,6 +163,30 @@
 
 {{#*inline "aggregations"}}
     {{#each executions}}
+
+      <h1>API Requests</h1>
+      <p>
+        <br/>
+      </p>
+      <p style="margin-left: 30.0px;">Name : <{{url}} {{method}} /p>
+      <p style="margin-left: 30.0px;">Total tests run : {{assertions.length}}</p>
+      <table class="relative-table wrapped" style="width: 14.2442%;margin-left: 30.0px;">
+        <colgroup> <col style="width: 48.668%;"/> <col style="width: 50.7172%;"/> </colgroup>
+        <tbody style="margin-left: 30.0px;">
+          <tr style="margin-left: 30.0px;">
+            <th style="margin-left: 30.0px;">Passed</th>
+            <th style="margin-left: 30.0px;">Fail</th>
+          </tr>
+          <tr style="margin-left: 30.0px;">
+            <td colspan="1" style="margin-left: 30.0px;">{{cumulativeTests.passed}}</td>
+            <td colspan="1" style="margin-left: 90.0px;">{{cumulativeTests.failed}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin-left: 30.0px;">
+        <br/>
+      </p>
+
         <ac:structured-macro ac:macro-id="collapse-request-{{item.id}}" ac:name="expand" ac:schema-version="1">
         <ac:parameter ac:name="title">{{item.name}} - Test Details</ac:parameter>
         <ac:rich-text-body>
