@@ -198,8 +198,8 @@
                                   <div class="col-md-12">&nbsp;</div>
                               {{/if}}
 
-                              <div class="col-md-4">Method</div><div class="col-md-8">{{method}}</div>
-                              <div class="col-md-4">URL</div><div class="col-md-8"><a href="{{url}}" target="_blank">{{url}}</a></div>
+                              <div class="col-md-4">Method: {method}}</div>
+                              <div class="col-md-4">URL: <a href="{{url}}" target="_blank">{{url}}</a></div>
                           {{/with}}
 
                           <div class="col-md-12">&nbsp;</div>
@@ -212,19 +212,19 @@
                           {{/if}}
 
                           <div class="col-md-12">&nbsp;</div>
-                          <div class="col-md-4">Mean time per request</div><div class="col-md-8">{{mean.time}}</div><br/>
-                          <div class="col-md-4">Mean size per request</div><div class="col-md-8">{{mean.size}}</div><br/>
+                          <div class="col-md-4">Mean time per request: {{mean.time}}</div><br/>
+                          <div class="col-md-4">Mean size per request: {{mean.size}}</div><br/>
 
                           <div class="col-md-12">&nbsp;</div>
-                          <br/><div class="col-md-4">Total passed tests</div><div class="col-md-8">{{cumulativeTests.passed}}</div>
-                          <div class="col-md-4">Total failed tests</div><div class="col-md-8">{{cumulativeTests.failed}}</div><br/>
+                          <br/><div class="col-md-4">Total passed tests:{{cumulativeTests.passed}}</div>
+                          <div class="col-md-4">Total failed tests: {{cumulativeTests.failed}}</div><br/>
 
                           <div class="col-md-12">&nbsp;</div>
-                          <br/><div class="col-md-4">Status code</div><div class="col-md-8">{{response.code}}</div><br/>
+                          <br/><div class="col-md-4">Status code : {{response.code}}</div>
 
                           {{#if assertions.length}}
                               <div class="col-md-12">&nbsp;</div>
-                              <div class="col-md-4">Tests</div>
+                              <div class="col-md-4">Validated Scenarios &amp; Test Results</div>
 
                               <div class="col-md-8">
                                   <table class="table table-responsive table-condensed">
