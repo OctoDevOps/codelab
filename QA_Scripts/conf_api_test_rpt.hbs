@@ -198,7 +198,7 @@
                                   <div class="col-md-12">&nbsp;</div>
                               {{/if}}
 
-                              <div class="col-md-4">Method: {method}}</div>
+                              <div class="col-md-4">Method: {{method}}</div>
                               <div class="col-md-4">URL: <a href="{{url}}" target="_blank">{{url}}</a></div>
                           {{/with}}
 
@@ -212,11 +212,9 @@
                           {{/if}}
 
                           <div class="col-md-12">&nbsp;</div>
-                          <div class="col-md-4">Mean time per request: {{mean.time}}</div><br/>
-                          <div class="col-md-4">Mean size per request: {{mean.size}}</div><br/>
-
-                          <div class="col-md-12">&nbsp;</div>
-                          <br/><div class="col-md-4">Total passed tests:{{cumulativeTests.passed}}</div>
+                          <div class="col-md-4">Mean time per request: {{mean.time}}</div>
+                          <div class="col-md-4">Mean size per request: {{mean.size}}</div>
+                          <div class="col-md-4">Total passed tests:{{cumulativeTests.passed}}</div>
                           <div class="col-md-4">Total failed tests: {{cumulativeTests.failed}}</div><br/>
 
                           <div class="col-md-12">&nbsp;</div>
@@ -225,7 +223,6 @@
                           {{#if assertions.length}}
                               <div class="col-md-12">&nbsp;</div>
                               <div class="col-md-4">Validated Scenarios &amp; Test Results</div>
-
                               <div class="col-md-8">
                                   <table class="table table-responsive table-condensed">
                                       <thead><tr><th>Name</th><th>Pass count</th><th>Fail count</th></tr></thead>
