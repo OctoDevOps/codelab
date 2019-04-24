@@ -186,7 +186,7 @@
 
 {{#*inline "aggregations"}}
     {{#each executions}}
-        <ac:structured-macro ac:macro-id="collapse-request-{{item.id}}" ac:name="expand" ac:schema-version="1"></ac:structured-macro>
+        <ac:structured-macro ac:macro-id="collapse-request-{{item.id}}" ac:name="expand" ac:schema-version="1">
         <ac:parameter ac:name="title">{{item.name}} - Test Details</ac:parameter>
         <ac:rich-text-body>
               <div class="panel panel-default">
