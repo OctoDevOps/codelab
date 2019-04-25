@@ -48,6 +48,14 @@ node {
                         }
                     }
 
+                    stage("Publishing Unit Testing Metris to Confluence")
+                    {
+                        withSonarQubeEnv('localhost_sonarqube') {
+                            
+                        }
+
+                    }
+
 /*
                 stage("Stop, Deploy and Restart"){
                     echo "Build package is ready to deploy"
@@ -120,11 +128,11 @@ node {
         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'SpringLab/var/reports/newman/html', reportFiles: 'index.html', reportName: 'JPT - API Test Report', reportTitles: 'Integration Testing'])
         //junit '/Users/dineshganesan/codelab/QA_Scripts/**/*.xml' 
         print 'Publishing the HTML Repot to Confluence...'
-        publishConfluence editorList: [confluenceWritePage(confluenceFile('SpringLab/var/reports/newman/html/rpt_int_testing.html'))], labels: 'Automation Test', pageName: 'API Integration Testing', replaceAttachments: false, siteName: 'localhost', spaceName: 'JA'
+        def project_name = "API Integration Testing"+"${pom.version}-${targetVersion}"
+        publishConfluence editorList: [confluenceWritePage(confluenceFile('SpringLab/var/reports/newman/html/rpt_int_testing.html'))], labels: 'Automation Test', pageName: '${$project_name}', replaceAttachments: false, siteName: 'localhost', spaceName: 'JA'
         //publishConfluence attachArchivedArtifacts: true, pageName: 'API Integration Testing', siteName: 'localhost', spaceName: 'JA'
    }
 }
-
     /**
     * Updates Jira Fixed in build field with the build number and adds a comment in each related Jira issue
     * This requires the Jenkins JIRA Pipeline Steps plugin https://jenkinsci.github.io/jira-steps-plugin/getting-started/
