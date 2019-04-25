@@ -129,7 +129,7 @@ node {
         //junit '/Users/dineshganesan/codelab/QA_Scripts/**/*.xml' 
         print 'Publishing the HTML Repot to Confluence...'
         def project_name = "API Integration Testing"+"${pom.version}-${targetVersion}"
-        publishConfluence editorList: [confluenceWritePage(confluenceFile('SpringLab/var/reports/newman/html/rpt_int_testing.html'))], labels: 'Automation Test', pageName: '${$project_name}', replaceAttachments: false, siteName: 'localhost', spaceName: 'JA'
+        publishConfluence editorList: [confluenceWritePage(confluenceFile('SpringLab/var/reports/newman/html/rpt_int_testing.html'))], labels: 'Automation Test', pageName: '${project_name}', replaceAttachments: false, siteName: 'localhost', spaceName: 'JA'
         //publishConfluence attachArchivedArtifacts: true, pageName: 'API Integration Testing', siteName: 'localhost', spaceName: 'JA'
    }
 }
