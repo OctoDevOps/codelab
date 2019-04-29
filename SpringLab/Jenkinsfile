@@ -130,7 +130,7 @@ node {
         //junit '/Users/dineshganesan/codelab/QA_Scripts/**/*.xml' 
         print 'Publishing the HTML Repot to Confluence...'
         //def pom = readMavenPom file: 'pom.xml'
-        def project_name = "Rel.${pom.version}"+"API Test Report "+"${env.BUILD_NUMBER}"
+        def project_name = "Rel.${pom.version}"+" API Test Report "+"${env.BUILD_NUMBER}"
         print 'Publishing the'+project_name+'HTML Repot to Confluence...'
         publishConfluence editorList: [confluenceWritePage(confluenceFile('SpringLab/var/reports/newman/html/rpt_int_testing.html'))], labels: 'Automation Test', pageName: project_name,  parentId: 65609, replaceAttachments: false, siteName: 'localhost', spaceName: 'JA'
         //publishConfluence attachArchivedArtifacts: true, pageName: 'API Integration Testing', siteName: 'localhost', spaceName: 'JA'
