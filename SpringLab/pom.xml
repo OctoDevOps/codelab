@@ -5,7 +5,8 @@
 
 	<groupId>com.gsa</groupId>
 	<artifactId>jptAutomation</artifactId>
-	<version>0.1</version>
+	<version>PI_19</version>
+	<iae_release>PI_19</iae_release>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
