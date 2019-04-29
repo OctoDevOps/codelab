@@ -5,7 +5,7 @@
 
 	<groupId>com.gsa</groupId>
 	<artifactId>jptAutomation</artifactId>
-	<version>PI_19</version>
+	<version>19</version>
 	<iae_release>PI_19</iae_release>
 
 	<parent>
