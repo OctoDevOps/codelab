@@ -3,6 +3,7 @@ import java.lang.String
 
 node {
     def shortCommit
+    def pom
   try {
 
        //Step #1. checkout the files
@@ -35,7 +36,7 @@ node {
                                 }
                                 else{
                                     sh "pwd;'${mvnHome}/bin/mvn' -Dintegration-tests.skip=true -Dbuild.number=${targetVersion} package"
-                                    def pom = readMavenPom file: 'pom.xml'
+                                    pom = readMavenPom file: 'pom.xml'
                                     // get the current development version
                                     developmentArtifactVersion = "${pom.version}-${targetVersion}"
                                     print 'Build Artifact version:'
@@ -128,7 +129,7 @@ node {
         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'SpringLab/var/reports/newman/html', reportFiles: 'index.html', reportName: 'JPT - API Test Report', reportTitles: 'Integration Testing'])
         //junit '/Users/dineshganesan/codelab/QA_Scripts/**/*.xml' 
         print 'Publishing the HTML Repot to Confluence...'
-        def pom = readMavenPom file: 'pom.xml'
+        //def pom = readMavenPom file: 'pom.xml'
         def project_name = "Rel.${pom.iae_release}"+"API Test Report "+"${env.BUILD_NUMBER}"
         print 'Publishing the'+project_name+'HTML Repot to Confluence...'
         publishConfluence editorList: [confluenceWritePage(confluenceFile('SpringLab/var/reports/newman/html/rpt_int_testing.html'))], labels: 'Automation Test', pageName: project_name,  parentId: 65609, replaceAttachments: false, siteName: 'localhost', spaceName: 'JA'
