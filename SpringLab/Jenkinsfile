@@ -57,7 +57,7 @@ node {
 
                     }
 
-/*
+
                 stage("Stop, Deploy and Restart"){
                     echo "Build package is ready to deploy"
                     // shutdown
@@ -79,7 +79,7 @@ node {
                         //setBuildStatus("ci/jenkins/build-status", "Build # ${env.BUILD_NUMBER} is pass", 'FAILURE')
                         setBuildStatus("ci/jenkins/build-status", "Build # ${env.BUILD_NUMBER} is pass", 'SUCCESS')
                     }
-*/
+
                 stage("Integration Testing"){
                 //    dir('/Users/dineshganesan/codelab/QA_Scripts') {
                         notifyBuild("Integration Testing Started..")
