@@ -43,6 +43,8 @@
 							"    });",
 							"}",
 							"",
+							"",
+							"",
 							""
 						],
 						"type": "text/javascript"
@@ -87,6 +89,66 @@
 					]
 				},
 				"description": "to get SAM release version"
+			},
+			"response": []
+		},
+		{
+			"name": "get_all_posts",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d79049d0-1776-4043-8944-63fce80f57b2",
+						"exec": [
+							"pm.environment.set(\"userid\", \"3\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "60e02172-8f56-43ea-baa3-058994f4e7bd",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Valid user found\", function () {",
+							"    pm.expect(jsonData[0].userId).to.eql(1);",
+							"    pm.globals.set(\"postid\", jsonData[0].id);",
+							"    //postman.setNextRequest(\"get a post\");",
+							"}); ",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
 			},
 			"response": []
 		}
