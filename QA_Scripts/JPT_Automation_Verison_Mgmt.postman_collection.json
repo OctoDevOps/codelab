@@ -116,8 +116,8 @@
 							"    pm.response.to.have.status(200);",
 							"});",
 							"",
-							"pm.test(\"Valid UserId & PostId Returned. User Id: \"+jsonData.userId+\" Post Id:\"+jsonData.id, function () {",
-							"     pm.expect(jsonData.userId).to.eql(pm.userid);",
+							"pm.test(\"Service returned valid post id. Id:\"+jsonData.id, function() {",
+							"    pm.expect(jsonData.id).eql(1)",
 							"});",
 							"",
 							""
