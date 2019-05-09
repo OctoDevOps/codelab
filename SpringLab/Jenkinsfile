@@ -135,8 +135,14 @@ node {
         print 'Publishing the HTML Repot to Confluence...'
         //def pom = readMavenPom file: 'pom.xml'
         def project_name = "Rel.${pom.version}"+" API Test Report "+"${env.BUILD_NUMBER}"
+        
+        def project_build_status = build.getBuilds.status;
+        currentBuild.rawBuild.@result = hudson.model.Result.SUCCESS
+        
         print 'Publishing the'+project_name+'HTML Repot to Confluence...'
         publishConfluence editorList: [confluenceWritePage(confluenceFile('SpringLab/var/reports/newman/html/rpt_int_testing.html'))], labels: 'Automation Test', pageName: project_name,  parentId: 65609, replaceAttachments: false, siteName: 'localhost', spaceName: 'JA'
+
+        currentBuild.rawBuild.@result = project_build_status
         //publishConfluence attachArchivedArtifacts: true, pageName: 'API Integration Testing', siteName: 'localhost', spaceName: 'JA'
    }
 }
