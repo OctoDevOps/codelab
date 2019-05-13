@@ -144,6 +144,11 @@
         {{/with}}
     {{/with}}
 
+<h1>API Requests</h1>
+<p>
+<br/>
+</p>
+
     {{#each aggregations}}
         {{#if parent.name}}
         <div class="panel-group" id="collapse-folder-{{parent.id}}" role="tablist" aria-multiselectable="true">
@@ -161,10 +166,6 @@
     {{/each}}
 
 
-<h1>API Requests</h1>
-<p>
-<br/>
-</p>
 {{#*inline "aggregations"}}
     {{#each executions}}
       {{#with request}}
