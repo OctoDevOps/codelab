@@ -1,0 +1,71 @@
+{
+	"info": {
+		"_postman_id": "2cc39ffc-304a-4437-b482-1f7406d597d2",
+		"name": "JPT_Automation_Office_Hours",
+		"description": "Sample tests to validate Jsonplaceholder API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get an user",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d79049d0-1776-4043-8944-63fce80f57b2",
+						"exec": [
+							"pm.variables.set(\"userid\", \"1\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "60e02172-8f56-43ea-baa3-058994f4e7bd",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Valid UserId & PostId Returned. User Id: \"+jsonData.id, function () {",
+							"     pm.expect(jsonData.id).to.eql(1);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{web_address}}/users//{{userid}}",
+					"host": [
+						"{{web_address}}"
+					],
+					"path": [
+						"users",
+						"",
+						"{{userid}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
