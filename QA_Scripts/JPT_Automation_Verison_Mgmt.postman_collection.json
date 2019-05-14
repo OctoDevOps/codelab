@@ -91,63 +91,6 @@
 				"description": "to get SAM release version"
 			},
 			"response": []
-		},
-		{
-			"name": "get a post",
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "d79049d0-1776-4043-8944-63fce80f57b2",
-						"exec": [
-							"pm.globals.set(\"postid\", _.random(0,5));"
-						],
-						"type": "text/javascript"
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"id": "60e02172-8f56-43ea-baa3-058994f4e7bd",
-						"exec": [
-							"var jsonData = pm.response.json();",
-							"",
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"Service returned valid post id. Id:\"+jsonData.id, function() {",
-							"    pm.expect(jsonData.id).eql(1)",
-							"});",
-							"",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "https://jsonplaceholder.typicode.com/posts/1",
-					"protocol": "https",
-					"host": [
-						"jsonplaceholder",
-						"typicode",
-						"com"
-					],
-					"path": [
-						"posts",
-						"1"
-					]
-				}
-			},
-			"response": []
 		}
 	]
 }
