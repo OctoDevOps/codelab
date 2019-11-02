@@ -49,13 +49,13 @@ node {
                         }
                     }
 
-                    stage("Publishing Unit Testing Metris to Confluence")
-                    {
-                        withSonarQubeEnv('localhost_sonarqube') {
+                    // stage("Publishing Unit Testing Metris to Confluence")
+                    // {
+                    //     withSonarQubeEnv('localhost_sonarqube') {
                             
-                        }
+                    //     }
 
-                    }
+                    // }
 
 
                 stage("Stop, Deploy and Restart"){
@@ -71,32 +71,32 @@ node {
                     // wait for application to respond
                     //sh 'while ! httping -qc1 http://localhost:8081 ; do sleep 1 ; done'
                     }
-                stage("Update JIRA"){
-                        updateJira("${env.BUILD_NUMBER}")
-                        //jiraComment(issueKey: "${ISSUE_ID}", body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) was successful. Please go to ${env.BUILD_URL}.")
-                        print 'Updated JIRA sucessfully!'
+                // stage("Update JIRA"){
+                //         updateJira("${env.BUILD_NUMBER}")
+                //         //jiraComment(issueKey: "${ISSUE_ID}", body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) was successful. Please go to ${env.BUILD_URL}.")
+                //         print 'Updated JIRA sucessfully!'
 
-                        //setBuildStatus("ci/jenkins/build-status", "Build # ${env.BUILD_NUMBER} is pass", 'FAILURE')
-                        setBuildStatus("ci/jenkins/build-status", "Build # ${env.BUILD_NUMBER} is pass", 'SUCCESS')
-                    }
+                //         //setBuildStatus("ci/jenkins/build-status", "Build # ${env.BUILD_NUMBER} is pass", 'FAILURE')
+                //         setBuildStatus("ci/jenkins/build-status", "Build # ${env.BUILD_NUMBER} is pass", 'SUCCESS')
+                //     }
 
-                stage("Integration Testing"){
-                //    dir('/Users/dineshganesan/codelab/QA_Scripts') {
-                        notifyBuild("Integration Testing Started..")
+                // stage("Integration Testing"){
+                // //    dir('/Users/dineshganesan/codelab/QA_Scripts') {
+                //         notifyBuild("Integration Testing Started..")
 
-                        //running test for jenkins admin console    
-                        sh 'pwd;newman run ../QA_Scripts/JPT_Automation_Verison_Mgmt.postman_collection.json -d "../QA_Scripts/getRel_testdata.csv" --reporters cli,junit,html --reporter-junit-export var/reports/newman/junit/newman.xml --reporter-html-export var/reports/newman/html/index.html'
+                //         //running test for jenkins admin console    
+                //         sh 'pwd;newman run ../QA_Scripts/JPT_Automation_Verison_Mgmt.postman_collection.json -d "../QA_Scripts/getRel_testdata.csv" --reporters cli,junit,html --reporter-junit-export var/reports/newman/junit/newman.xml --reporter-html-export var/reports/newman/html/index.html'
                         
-                        //running test to generate report for confluence
-                        sh 'pwd;newman run ../QA_Scripts/JPT_Automation_Verison_Mgmt.postman_collection.json -d "../QA_Scripts/getRel_testdata.csv" --reporters cli,json,html --reporter-json-export var/reports/newman/json/testreport.json --reporter-html-export var/reports/newman/html/rpt_int_testing.html --reporter-html-template "../QA_Scripts/conf_api_test_rpt.hbs"'
-                        print 'Integration testing is compelte'
-                        //publishing the result in HTML format
-                        //publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'SpringLab/var/reports/newman/html', reportFiles: 'index.html', reportName: 'JPT - API Test Report', reportTitles: 'Integration Testing'])
-                        //publishing the file to confluence
-                        //publishConfluence editorList: [confluenceWritePage(confluenceFile('index.html'))], labels: 'Automation Test', pageName: 'API Integration Testing', replaceAttachments: true, siteName: 'localhost', spaceName: 'JA'
+                //         //running test to generate report for confluence
+                //         sh 'pwd;newman run ../QA_Scripts/JPT_Automation_Verison_Mgmt.postman_collection.json -d "../QA_Scripts/getRel_testdata.csv" --reporters cli,json,html --reporter-json-export var/reports/newman/json/testreport.json --reporter-html-export var/reports/newman/html/rpt_int_testing.html --reporter-html-template "../QA_Scripts/conf_api_test_rpt.hbs"'
+                //         print 'Integration testing is compelte'
+                //         //publishing the result in HTML format
+                //         //publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'SpringLab/var/reports/newman/html', reportFiles: 'index.html', reportName: 'JPT - API Test Report', reportTitles: 'Integration Testing'])
+                //         //publishing the file to confluence
+                //         //publishConfluence editorList: [confluenceWritePage(confluenceFile('index.html'))], labels: 'Automation Test', pageName: 'API Integration Testing', replaceAttachments: true, siteName: 'localhost', spaceName: 'JA'
 
                         
-                    }
+                //     }
 
               /*  
             stage('Update Confluence Page') {
@@ -128,19 +128,19 @@ node {
        throw err
    } 
    finally{
-        print 'Generating HTML Repot ...'
-        notifyBuild("Integration test result is available now.")
-        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'SpringLab/var/reports/newman/html', reportFiles: 'index.html', reportName: 'JPT - API Test Report', reportTitles: 'Integration Testing'])
-        //junit '/Users/dineshganesan/codelab/QA_Scripts/**/*.xml' 
-        print 'Publishing the HTML Repot to Confluence...'
-        //def pom = readMavenPom file: 'pom.xml'
-        def project_name = "Rel.${pom.version}"+" API Test Report "+"${env.BUILD_NUMBER}"
+    //     print 'Generating HTML Repot ...'
+    //     notifyBuild("Integration test result is available now.")
+    //     publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: true, reportDir: 'SpringLab/var/reports/newman/html', reportFiles: 'index.html', reportName: 'JPT - API Test Report', reportTitles: 'Integration Testing'])
+    //     //junit '/Users/dineshganesan/codelab/QA_Scripts/**/*.xml' 
+    //     print 'Publishing the HTML Repot to Confluence...'
+    //     //def pom = readMavenPom file: 'pom.xml'
+    //     def project_name = "Rel.${pom.version}"+" API Test Report "+"${env.BUILD_NUMBER}"
         
-       // def project_build_status =  currentBuild.result
-       // currentBuild.result = hudson.model.Result.SUCCESS
+    //    // def project_build_status =  currentBuild.result
+    //    // currentBuild.result = hudson.model.Result.SUCCESS
 
-        print 'Publishing the'+project_name+'HTML Repot to Confluence...'
-        publishConfluence editorList: [confluenceWritePage(confluenceFile('SpringLab/var/reports/newman/html/rpt_int_testing.html'))], labels: 'Automation Test', pageName: project_name,  parentId: 65609, replaceAttachments: false, siteName: 'localhost', spaceName: 'JA'
+    //     print 'Publishing the'+project_name+'HTML Repot to Confluence...'
+    //     publishConfluence editorList: [confluenceWritePage(confluenceFile('SpringLab/var/reports/newman/html/rpt_int_testing.html'))], labels: 'Automation Test', pageName: project_name,  parentId: 65609, replaceAttachments: false, siteName: 'localhost', spaceName: 'JA'
 
         //currentBuild.result = project_build_status
         //publishConfluence attachArchivedArtifacts: true, pageName: 'API Integration Testing', siteName: 'localhost', spaceName: 'JA'
