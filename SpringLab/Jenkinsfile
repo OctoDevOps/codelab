@@ -36,7 +36,7 @@ node {
                                 }
                                 else{
                                     sh "pwd;'${mvnHome}/bin/mvn' -Dintegration-tests.skip=true -Dbuild.number=${targetVersion} package"
-                                    pom = readMavenPom file: 'pom.xml'
+                                    //pom = readMavenPom file: 'pom.xml'
                                     // get the current development version
                                     developmentArtifactVersion = "${pom.version}-${targetVersion}"
                                     print 'Build Artifact version:'
