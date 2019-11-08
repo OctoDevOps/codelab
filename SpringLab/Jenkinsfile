@@ -16,7 +16,7 @@ node {
                 def mvnHome = tool 'M3'
                 def targetVersion = "${env.BUILD_NUMBER}" //getDevVersion()
 
-                sh "docker kill  dk_container_svcAutomation || true"
+                sh "/usr/local/bin/docker kill  dk_container_svcAutomation || true"
 
                 //Step #2. Build with unit testing
                 stage("Build with Unit Testing ")
@@ -70,8 +70,8 @@ node {
                 //     sh 'nohup java -Dserver.port=9090 -jar /Users/dineshganesan/codelab/buildrun/*.jar &'
                 //}
                     sh "'${mvnHome}/bin/mvn' package"
-                    sh "docker build -t imgSvc_iaeAutomation"
-                    sh "docker run -d -p 9090:8080 imgSvc_iaeAutomation --name dk_container_svcAutomation"
+                    sh "/usr/local/bin/docker build -t imgSvc_iaeAutomation"
+                    sh "/usr/local/bin/docker run -d -p 9090:8080 imgSvc_iaeAutomation --name dk_container_svcAutomation"
 
                     echo "Successfully launched the app"
                     // wait for application to respond
