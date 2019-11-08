@@ -69,7 +69,7 @@ node {
                 //withEnv(['JENKINS_NODE_COOKIE=dontkill']) {
                 //     sh 'nohup java -Dserver.port=9090 -jar /Users/dineshganesan/codelab/buildrun/*.jar &'
                 //}
-                    sh "mvn package"
+                    sh "'${mvnHome}/bin/mvn' package"
                     sh "docker build -t imgSvc_iaeAutomation"
                     sh "docker run -d -p 9090:8080 imgSvc_iaeAutomation --name dk_container_svcAutomation"
 
