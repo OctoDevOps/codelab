@@ -70,7 +70,7 @@ node {
                 //     sh 'nohup java -Dserver.port=9090 -jar /Users/dineshganesan/codelab/buildrun/*.jar &'
                 //}
                    // sh "'${mvnHome}/bin/mvn' package"
-                    sh "/usr/local/bin/docker build -t imgautomation"
+                    sh "/usr/local/bin/docker build -t imgautomation ."
                     sh "/usr/local/bin/docker run -d -p 9090:8080 imgautomation --name dkautomation"
 
                     echo "Successfully launched the app"
