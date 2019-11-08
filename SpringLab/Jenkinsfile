@@ -16,7 +16,7 @@ node {
                 def mvnHome = tool 'M3'
                 def targetVersion = "${env.BUILD_NUMBER}" //getDevVersion()
 
-                sh "docker kill  dk_container_svcAutomation"
+                sh "docker kill  dk_container_svcAutomation || true"
 
                 //Step #2. Build with unit testing
                 stage("Build with Unit Testing ")
