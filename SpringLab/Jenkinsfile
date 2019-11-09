@@ -77,6 +77,16 @@ node {
                     // wait for application to respond
                     //sh 'while ! httping -qc1 http://localhost:8081 ; do sleep 1 ; done'
                     }
+
+                stage("Publishing Artifact"){
+                    echo "Publishing docker image to Nexus repo"
+                    archiveArtifacts allowEmptyArchive: true, artifacts: 'imgautomation', onlyIfSuccessful: true
+                }
+
+
+
+
+
                 // stage("Update JIRA"){
                 //         updateJira("${env.BUILD_NUMBER}")
                 //         //jiraComment(issueKey: "${ISSUE_ID}", body: "Job '${env.JOB_NAME}' (${env.BUILD_NUMBER}) was successful. Please go to ${env.BUILD_URL}.")
