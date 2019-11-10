@@ -17,6 +17,15 @@ node {
                 def targetVersion = "${env.BUILD_NUMBER}" //getDevVersion()
 
                 sh "/usr/local/bin/docker kill  dkautomation || true"
+                timeout(5) {
+                    waitUntil {
+                        script {
+                            def result = sh script: 'docker ps -f "name=dkautomation" --format "{{.ID}}"'
+                            print '$result'
+                            return result == null;
+                        }
+                    }
+                }
 
                 //Step #2. Build with unit testing
                 stage("Build with Unit Testing ")
