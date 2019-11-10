@@ -71,7 +71,7 @@ node {
                 //}
                    // sh "'${mvnHome}/bin/mvn' package"
                     sh "/usr/local/bin/docker build -t imgautomation ."
-                    sh "/usr/local/bin/docker run -d -p 9090:8080 imgautomation --name dkautomation"
+                    sh "/usr/local/bin/docker run --name dkautomation -d -p 9090:8080 imgautomation"
 
                     echo "Successfully launched the app"
                     // wait for application to respond
