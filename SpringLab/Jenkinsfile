@@ -17,11 +17,12 @@ node {
                 def targetVersion = "${env.BUILD_NUMBER}" //getDevVersion()
 
                 sh "/usr/local/bin/docker kill  dkautomation || true"
+                sh "/usr/local/bin/docker rm  dkautomation || true"
                 timeout(5) {
                     waitUntil {
                         script {
                             def result = sh script: '/usr/local/bin/docker ps -f "name=dkautomation" --format "{{.ID}}"'
-                            print '$result'
+                            print result
                             return result == null;
                         }
                     }
