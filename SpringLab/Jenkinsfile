@@ -116,12 +116,23 @@ node {
                                 // app.push("${shortCommit}")
                                 dockerImage.push('release')
                             }
-                        // }
+
 
                             stage ('Deploy and Launch RC'){
-                                // sh 'docker run -d -p 8080:8080 -t safe/gs-spring-boot-docker --name safe-ws'
-                                // app.push("${shortCommit}")
-                                docker.image("services/imgautomation:release").run('-p 9091:8080 -h 0.0.0.0 --name imgautomation_rc')
+
+                                sh "/usr/local/bin/docker kill  imgautomation_rc || true"
+                                sh "/usr/local/bin/docker rm  imgautomation_rc || true"
+                                timeout(5) {
+                                    waitUntil {
+                                        script {
+                                            def result = sh script: '/usr/local/bin/docker ps -f "name=imgautomation_rc" --format "{{.ID}}"'
+                                            print result
+                                            return result == null;
+                                        }
+                                    }
+                                }
+
+                                docker.image("localhost:8091/services/imgautomation:release").run('-p 9091:8080 -h 0.0.0.0 --name imgautomation_rc')
                             }
                         }
 
