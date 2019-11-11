@@ -88,7 +88,7 @@ node {
                 //}
                    // sh "'${mvnHome}/bin/mvn' package"
                     //dockerImage = sh "/usr/local/bin/docker build -t imgautomation ." -- gd
-                    dockerImage = docker.build('imgautomation')
+                    dockerImage = docker.build('services/imgautomation')
                     sh "/usr/local/bin/docker run --name dkautomation -d -p 9090:8080 imgautomation"
 
                     echo "Successfully launched the app"
@@ -106,20 +106,7 @@ node {
                     // dockerImage.push()
 
                         docker.withRegistry('http://localhost:8090', 'nexus_access_id') {
-
-                         // Enable this if the docker server is remote   
-                        // docker.withServer('tcp://192.168.137.18:2376') {
-
-                            // stage('Build Docker Image'){
-                            //     dockerImage = docker.build('imgautomation')
-                            // }
-
-                            stage ('Push Image to Repo'){
-                                // sh 'docker run -d -p 8080:8080 -t safe/gs-spring-boot-docker --name safe-ws'
-                                // app.push("${shortCommit}")
-                                dockerImage.push('snapshots/latest')
-                            }
-                        // }
+                            dockerImage.push('snapshot')
                         }
 
                         docker.withRegistry('http://localhost:8091', 'nexus_access_id') {
@@ -127,14 +114,14 @@ node {
                             stage ('Label RC'){
                                 // sh 'docker run -d -p 8080:8080 -t safe/gs-spring-boot-docker --name safe-ws'
                                 // app.push("${shortCommit}")
-                                dockerImage.push('releases/latest')
+                                dockerImage.push('release')
                             }
                         // }
 
                             stage ('Deploy and Launch Release Candidate'){
                                 // sh 'docker run -d -p 8080:8080 -t safe/gs-spring-boot-docker --name safe-ws'
                                 // app.push("${shortCommit}")
-                                docker.image("releases/latest").run('-p 9091:8080 -h 0.0.0.0 --name imgautomation_rc')
+                                docker.image("release").run('-p 9091:8080 -h 0.0.0.0 --name imgautomation_rc')
                             }
                         }
 
