@@ -6,6 +6,12 @@ node {
     def pom
   try {
 
+        environment {
+            registry = "docker-test"
+            registryCredential = 'dockerhub'
+            dockerImage = ''
+        }
+
        //Step #1. checkout the files
         stage ("Code checkout")  {
                 credentialsId: 'dinesh'
@@ -80,7 +86,7 @@ node {
                 //     sh 'nohup java -Dserver.port=9090 -jar /Users/dineshganesan/codelab/buildrun/*.jar &'
                 //}
                    // sh "'${mvnHome}/bin/mvn' package"
-                    sh "/usr/local/bin/docker build -t imgautomation ."
+                    dockerImage = sh "/usr/local/bin/docker build -t imgautomation ."
                     sh "/usr/local/bin/docker run --name dkautomation -d -p 9090:8080 imgautomation"
 
                     echo "Successfully launched the app"
@@ -88,9 +94,42 @@ node {
                     //sh 'while ! httping -qc1 http://localhost:8081 ; do sleep 1 ; done'
                     }
 
-                stage("Publishing Artifact"){
-                    echo "Publishing docker image to Nexus repo"
-                    archiveArtifacts allowEmptyArchive: true, artifacts: 'imgautomation', onlyIfSuccessful: true
+                stage("Push Image to Repo "){
+                    echo "Publishing docker image to docker registry repo"
+                    // associateTag nexusInstanceId: 'iae_artifact_repo', search: [[key: 'name', value: 'iae_artifact_repo']], tagName: 'iae_automation_snapshot'
+                    // archiveArtifacts allowEmptyArchive: true, artifacts: 'imgautomation', onlyIfSuccessful: true
+
+                    // withDockerRegistry([credentialsId: 'docker-registry-credentials', url: "http://localhost:8081/"]) {
+                    // // we give the image the same version as the .war package
+                    // dockerImage.push()
+
+                        docker.withRegistry('http://localhost:8081', 'nexus_access_id') {
+
+                         // Enable this if the docker server is remote   
+                        // docker.withServer('tcp://192.168.137.18:2376') {
+
+                            stage('Build Docker Image'){
+                                dockerImage = docker.build('imgautomation')
+                            }
+
+                            stage ('Push Image to Repo'){
+                                // sh 'docker run -d -p 8080:8080 -t safe/gs-spring-boot-docker --name safe-ws'
+                                // app.push("${shortCommit}")
+                                dockerImage.push('latest')
+                            }
+                        // }
+                    }
+
+
+
+                    } 
+
+
+                    // dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                    // docker.withRegistry( '', registryCredential ) {dockerImage.push()
+                    // prepare docker build context
+                    //associateTag nexusInstanceId: 'iae_artifact_repo', search: [[key: 'name', value: 'iae_artifact_repo']], tagName: 'iae_automation_snapshot'
+                    //archiveArtifacts allowEmptyArchive: true, artifacts: 'imgautomation', onlyIfSuccessful: true
                 }
 
 
