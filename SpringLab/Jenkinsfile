@@ -4,7 +4,7 @@ import java.lang.String
 node {
     def shortCommit
     def pom
-    docker.withTool('/usr/local/bin/docker')
+    //docker.withTool('/usr/local/bin/docker')
   try {
 
         environment {
