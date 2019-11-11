@@ -118,10 +118,10 @@ node {
                             }
                         // }
 
-                            stage ('Deploy and Launch Release Candidate'){
+                            stage ('Deploy and Launch RC'){
                                 // sh 'docker run -d -p 8080:8080 -t safe/gs-spring-boot-docker --name safe-ws'
                                 // app.push("${shortCommit}")
-                                docker.image("release").run('-p 9091:8080 -h 0.0.0.0 --name imgautomation_rc')
+                                docker.image("services/imgautomation:release").run('-p 9091:8080 -h 0.0.0.0 --name imgautomation_rc')
                             }
                         }
 
