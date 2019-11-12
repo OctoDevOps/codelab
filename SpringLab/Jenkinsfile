@@ -23,8 +23,8 @@ node {
                 def mvnHome = tool 'M3'
                 def targetVersion = "${env.BUILD_NUMBER}" //getDevVersion()
 
-                // sh "/usr/local/bin/docker kill  dkautomation || true"
-                // sh "/usr/local/bin/docker rmi  dkautomation || true"
+                sh "/usr/local/bin/docker kill  dkautomation || true"
+                sh "/usr/local/bin/docker rmi  dkautomation || true"
                 // timeout(5) {
                 //     waitUntil {
                 //         script {
@@ -89,7 +89,7 @@ node {
                    // sh "'${mvnHome}/bin/mvn' package"
                     //dockerImage = sh "/usr/local/bin/docker build -t imgautomation ." -- gd
                     dockerImage = docker.build('services/imgautomation')
-                    sh "/usr/local/bin/docker run --name dkautomation -d -p 9090:8080 imgautomation"
+                    sh "/usr/local/bin/docker run --name dkautomation -d -p 9090:8080 services/imgautomation"
 
                     echo "Successfully launched the app"
                     // wait for application to respond
