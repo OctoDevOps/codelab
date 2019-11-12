@@ -25,6 +25,8 @@ node {
 
                 sh "/usr/local/bin/docker kill  dkautomation || true"
                 sh "/usr/local/bin/docker rmi  dkautomation || true"
+                sh "/usr/local/bin/docker system prune || true"
+
                 // timeout(5) {
                 //     waitUntil {
                 //         script {
