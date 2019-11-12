@@ -109,31 +109,62 @@ node {
                             dockerImage.push('snapshot')
                         }
 
-                        docker.withRegistry('http://localhost:8091', 'nexus_access_id') {
-
-                            stage ('Label RC'){
-                                // sh 'docker run -d -p 8080:8080 -t safe/gs-spring-boot-docker --name safe-ws'
-                                // app.push("${shortCommit}")
-                                dockerImage.push('release')
+                        def userInput = true
+                        def didTimeout = false
+                        try {
+                            timeout(time: 15, unit: 'SECONDS') { // change to a convenient timeout for you
+                                userInput = input(
+                                id: 'Proceed1', message: 'Was this successful?', parameters: [
+                                [$class: 'BooleanParameterDefinition', defaultValue: true, description: '', name: 'Please confirm you agree with this']
+                                ])
                             }
+                        } catch(err) { // timeout reached or input false
+                            def user = err.getCauses()[0].getUser()
+                            if('SYSTEM' == user.toString()) { // SYSTEM means timeout.
+                                didTimeout = true
+                            } else {
+                                userInput = false
+                                echo "Aborted by: [${user}]"
+                            }
+                        }
 
+                        node {
+                            if (didTimeout) {
+                                // do something on timeout
+                                echo "no input was received before timeout"
+                            } else if (userInput == true) {
+                                // do something
+                                echo "Admin has approved the build and it's ready to release now"
+                                docker.withRegistry('http://localhost:8091', 'nexus_access_id') {
 
-                            stage ('Deploy and Launch RC'){
+                                    stage ('Label RC'){
+                                        // sh 'docker run -d -p 8080:8080 -t safe/gs-spring-boot-docker --name safe-ws'
+                                        // app.push("${shortCommit}")
+                                        dockerImage.push('release')
+                                    }
 
-                                sh "/usr/local/bin/docker kill  imgautomation_rc || true"
-                                sh "/usr/local/bin/docker rm  imgautomation_rc || true"
-                                timeout(5) {
-                                    waitUntil {
-                                        script {
-                                            def result = sh script: '/usr/local/bin/docker ps -f "name=imgautomation_rc" --format "{{.ID}}"'
-                                            print result
-                                            return result == null;
+                                    stage ('Deploy and Launch RC'){
+
+                                        sh "/usr/local/bin/docker kill  imgautomation_rc || true"
+                                        sh "/usr/local/bin/docker rm  imgautomation_rc || true"
+                                        timeout(5) {
+                                            waitUntil {
+                                                script {
+                                                    def result = sh script: '/usr/local/bin/docker ps -f "name=imgautomation_rc" --format "{{.ID}}"'
+                                                    print result
+                                                    return result == null;
+                                                }
+                                            }
                                         }
+
+                                        docker.image("localhost:8091/services/imgautomation:release").run('-p 9091:8080 -h 0.0.0.0 --name imgautomation_rc')
                                     }
                                 }
-
-                                docker.image("localhost:8091/services/imgautomation:release").run('-p 9091:8080 -h 0.0.0.0 --name imgautomation_rc')
-                            }
+                            } else {
+                                // do something else
+                                echo "Admin has rejected the release deployment"
+                                currentBuild.result = 'FAILURE'
+                            } 
                         }
 
                     // } 
