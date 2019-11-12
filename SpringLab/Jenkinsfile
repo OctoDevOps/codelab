@@ -112,7 +112,7 @@ node {
                         def userInput = true
                         def didTimeout = false
                         try {
-                            timeout(time: 45, unit: 'SECONDS') { // change to a convenient timeout for you
+                            timeout(time: 60, unit: 'SECONDS') { // change to a convenient timeout for you
                                 userInput = input(
                                 ok:'Yes', message: 'Please confirm if you are satisfied with the QA results', parameters: [
                                 [$class: 'BooleanParameterDefinition', defaultValue: true, description: '', name: 'Certified']
