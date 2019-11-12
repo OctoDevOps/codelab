@@ -39,7 +39,7 @@ public class jptAutomation {
 	@ResponseBody
 	String getRelVersion() {
 		//updated a new release version
-		return "17";
+		return "18";
 	}
 
 	//IAE-2
