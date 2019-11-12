@@ -24,6 +24,7 @@ node {
                 def targetVersion = "${env.BUILD_NUMBER}" //getDevVersion()
 
                 sh "/usr/local/bin/docker kill  dkautomation || true"
+                sh "/usr/local/bin/docker rm -f  dkautomation || true"
                 sh "/usr/local/bin/docker rmi  dkautomation || true"
                 sh "/usr/local/bin/docker system prune || true"
 
