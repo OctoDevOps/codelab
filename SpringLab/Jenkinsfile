@@ -114,8 +114,8 @@ node {
                         try {
                             timeout(time: 45, unit: 'SECONDS') { // change to a convenient timeout for you
                                 userInput = input(
-                                id: 'Proceed1', message: 'Please confirm if you are satisfied with the QA results', parameters: [
-                                [$class: 'BooleanParameterDefinition', defaultValue: true, description: '', name: 'QA result']
+                                ok:'Yes', message: 'Please confirm if you are satisfied with the QA results', parameters: [
+                                [$class: 'BooleanParameterDefinition', defaultValue: true, description: '', name: 'Certified']
                                 ])
                             }
                         } catch(err) { // timeout reached or input false
